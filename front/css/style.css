@@ -46,8 +46,6 @@ h2 {
 }
 
 
-
-
 /********/
 /*Header*/
 /********/
@@ -114,8 +112,6 @@ h2 {
 }
 
 
-
-
 /******/
 /*Main*/
 /******/
@@ -176,8 +172,6 @@ main {
 }
 
 
-
-
 /********/
 /*Footer*/
 /********/
@@ -212,8 +206,6 @@ footer .footerSecondary {
 	background-color: var(--footer-secondary-color);
 	padding: 25px 0;
 }
-
-
 
 
 /***************/

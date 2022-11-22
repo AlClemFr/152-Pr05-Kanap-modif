@@ -5,7 +5,7 @@ const products = [
     "name": "Kanap Sinopé",
     "price": 1849,
     "imageUrl": "kanap01.jpeg",
-    "description": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+    "description": "0 Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
     "altTxt": "Photo d'un canapé bleu, deux places"
   },
   {
@@ -14,7 +14,7 @@ const products = [
     "name": "Kanap Cyllène",
     "price": 4499,
     "imageUrl": "kanap02.jpeg",
-    "description": "Morbi nec erat aliquam, sagittis urna non, laoreet justo. Etiam sit amet interdum diam, at accumsan lectus.",
+    "description": "1 Morbi nec erat aliquam, sagittis urna non, laoreet justo. Etiam sit amet interdum diam, at accumsan lectus.",
     "altTxt": "Photo d'un canapé jaune et noir, quattre places"
   },
   {
@@ -23,7 +23,7 @@ const products = [
     "name": "Kanap Calycé",
     "price": 3199,
     "imageUrl": "kanap03.jpeg",
-    "description": "Pellentesque fermentum arcu venenatis ex sagittis accumsan. Vivamus lacinia fermentum tortor.Mauris imperdiet tellus ante.",
+    "description": "2 Pellentesque fermentum arcu venenatis ex sagittis accumsan. Vivamus lacinia fermentum tortor.Mauris imperdiet tellus ante.",
     "altTxt": "Photo d'un canapé d'angle, vert, trois places"
   },
   {
@@ -32,7 +32,7 @@ const products = [
     "name": "Kanap Autonoé",
     "price": 1499,
     "imageUrl": "kanap04.jpeg",
-    "description": "Donec mattis nisl tortor, nec blandit sapien fermentum at. Proin hendrerit efficitur fringilla. Lorem ipsum dolor sit amet.",
+    "description": "3 Donec mattis nisl tortor, nec blandit sapien fermentum at. Proin hendrerit efficitur fringilla. Lorem ipsum dolor sit amet.",
     "altTxt": "Photo d'un canapé rose, une à deux place"
   },
   {
@@ -41,7 +41,7 @@ const products = [
     "name": "Kanap Eurydomé",
     "price": 2249,
     "imageUrl": "kanap05.jpeg",
-    "description": "Ut laoreet vulputate neque in commodo. Suspendisse maximus quis erat in sagittis. Donec hendrerit purus at congue aliquam.",
+    "description": "4 Ut laoreet vulputate neque in commodo. Suspendisse maximus quis erat in sagittis. Donec hendrerit purus at congue aliquam.",
     "altTxt": "Photo d'un canapé gris, trois places"
   },
   {
@@ -50,7 +50,7 @@ const products = [
     "name": "Kanap Hélicé",
     "price": 999,
     "imageUrl": "kanap06.jpeg",
-    "description": "Curabitur vel augue sit amet arcu aliquet interdum. Integer vel quam mi. Morbi nec vehicula mi, sit amet vestibulum.",
+    "description": "5 Curabitur vel augue sit amet arcu aliquet interdum. Integer vel quam mi. Morbi nec vehicula mi, sit amet vestibulum.",
     "altTxt": "Photo d'un canapé gris, deux places"
   },
   {
@@ -59,7 +59,7 @@ const products = [
     "name": "Kanap Thyoné",
     "price": 1999,
     "imageUrl": "kanap07.jpeg",
-    "description": "EMauris imperdiet tellus ante, sit amet pretium turpis molestie eu. Vestibulum et egestas eros. Vestibulum non lacus orci.",
+    "description": "6 EMauris imperdiet tellus ante, sit amet pretium turpis molestie eu. Vestibulum et egestas eros. Vestibulum non lacus orci.",
     "altTxt": "Photo d'un canapé rouge, deux places"
   },
   {
@@ -68,7 +68,7 @@ const products = [
     "name": "Kanap orthosie",
     "price": 3999,
     "imageUrl": "kanap08.jpeg",
-    "description": "Mauris molestie laoreet finibus. Aenean scelerisque convallis lacus at dapibus. Morbi imperdiet enim metus rhoncus.",
+    "description": "7 Mauris molestie laoreet finibus. Aenean scelerisque convallis lacus at dapibus. Morbi imperdiet enim metus rhoncus.",
     "altTxt": "Photo d'un canapé rose, trois places"
   }
 ];
