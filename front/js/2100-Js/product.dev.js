@@ -29,9 +29,13 @@ var Myfetch = fetch(url).then(function (responsive) {
     document.querySelector('.item__img').innerHTML = total; //b---------      
 
     document.querySelector('#title2').innerHTML = data.name; //b---------  
-    // j- mettre en place la vigule     
+    // v- mettre en place la vigule, Fait OK     
 
-    document.querySelector('#price').innerHTML = data.price; //b---------  
+    var poub = parseFloat(data.price);
+    poub /= 10;
+    console.log(poub);
+    var price = poub.toString();
+    document.querySelector('#price').innerHTML = price; //b---------  
 
     document.querySelector('#description').innerHTML = data.description; //b---------  
     // let i = data.colors.length;

@@ -11,11 +11,8 @@ console.log(id);
 // vi- ----------------------------------------------------
 // vi- ----------------------------------------------------
 
-
 let url = "http://localhost:3000/api/products/" + id;
 console.log(url);
-
-
 
 let Myfetch = fetch(url)
   .then(
@@ -48,14 +45,19 @@ let Myfetch = fetch(url)
           document.querySelector('#title2').innerHTML = data.name;
 
           //b---------  
-          // j- mettre en place la vigule     
-          document.querySelector('#price').innerHTML = data.price;
+          // v- mettre en place la vigule, Fait OK     
+          let poub = parseFloat(data.price);
+          poub /= 10;
+          console.log(poub);
+
+          let price = poub.toString();
+
+          document.querySelector('#price').innerHTML = price;
 
           //b---------  
           document.querySelector('#description').innerHTML = data.description;
 
           //b---------  
-
           // let i = data.colors.length;
           // console.log(i);
           let i = 0;

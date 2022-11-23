@@ -1,11 +1,18 @@
 
 let url = "http://localhost:3000/api/products/";
 
+let Momo = "Gros Naze";
+
 let Myfetch = fetch(url)
   .then(
     (responsive) => responsive.json()
       .then(
         (data) => {
+
+          Momo = data;
+          console.log("01: ");
+          console.log(Momo);
+
 
           // j- pour voir , concerver
           // console.log(data);
@@ -16,6 +23,8 @@ let Myfetch = fetch(url)
           let titi = "";
 
           for (let i of data) {
+            console.log("i: ");
+            console.log(i);
 
             // j- pour voir , concerver
             // console.log(i._id + " " +
@@ -37,7 +46,6 @@ let Myfetch = fetch(url)
             </a>`;
 
             total += titi;
-
           };
 
           document.querySelector('#items').innerHTML = total;
@@ -47,6 +55,8 @@ let Myfetch = fetch(url)
       .catch((err) => console.log(`erreur: ` + err))
   );
 
+console.log("02: ");
+console.log(Momo);
 
 // vi- *************************************************************
 // vi- *************************************************************
