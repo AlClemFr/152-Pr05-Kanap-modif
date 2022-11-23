@@ -1,7 +1,8 @@
 
 let url = "http://localhost:3000/api/products/";
 
-let Momo = "Gros Naze";
+var Momo = "Gros Naze";
+globalThis.yourGlobalVariable = "";
 
 let Myfetch = fetch(url)
   .then(
@@ -9,10 +10,19 @@ let Myfetch = fetch(url)
       .then(
         (data) => {
 
+
           Momo = data;
           console.log("01: ");
-          console.log(Momo);
 
+          let objLinea = JSON.stringify(Momo);
+          localStorage.setItem("obj", objLinea);
+
+          if (false) {
+            let BOBO = localStorage.getItem("obj");
+            let BIBI = JSON.parse(BOBO);
+
+            console.log(BIBI);
+          }
 
           // j- pour voir , concerver
           // console.log(data);
@@ -23,8 +33,8 @@ let Myfetch = fetch(url)
           let titi = "";
 
           for (let i of data) {
-            console.log("i: ");
-            console.log(i);
+            // console.log("i: ");
+            // console.log(i);
 
             // j- pour voir , concerver
             // console.log(i._id + " " +
@@ -55,8 +65,13 @@ let Myfetch = fetch(url)
       .catch((err) => console.log(`erreur: ` + err))
   );
 
-console.log("02: ");
-console.log(Momo);
+if (true) {
+  console.log("02: ");
+  let BOBO = localStorage.getItem("obj");
+  let BIBI = JSON.parse(BOBO);
+  console.log(BIBI);
+}
+
 
 // vi- *************************************************************
 // vi- *************************************************************

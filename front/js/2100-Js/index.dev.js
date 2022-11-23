@@ -2,12 +2,21 @@
 
 var url = "http://localhost:3000/api/products/";
 var Momo = "Gros Naze";
+globalThis.yourGlobalVariable = "";
 var Myfetch = fetch(url).then(function (responsive) {
   return responsive.json().then(function (data) {
     Momo = data;
     console.log("01: ");
-    console.log(Momo); // j- pour voir , concerver
+    var objLinea = JSON.stringify(Momo);
+    localStorage.setItem("obj", objLinea);
+
+    if (false) {
+      var BOBO = localStorage.getItem("obj");
+      var BIBI = JSON.parse(BOBO);
+      console.log(BIBI);
+    } // j- pour voir , concerver
     // console.log(data);
+
 
     var altTxt = "";
     var total = "";
@@ -19,14 +28,14 @@ var Myfetch = fetch(url).then(function (responsive) {
     try {
       for (var _iterator = data[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
         var i = _step.value;
-        console.log("i: ");
-        console.log(i); // j- pour voir , concerver
+        // console.log("i: ");
+        // console.log(i);
+        // j- pour voir , concerver
         // console.log(i._id + " " +
         //   i.name + " " +
         //   i.imageUrl + " " +
         //   i.description + " " +
         //   i.altTxt);
-
         altTxt = i.altTxt + ', ' + i.name;
         titi = "<a href=\"./product.html?id=".concat(i._id, "\">\n            <article>\n            <img src=\"") + i.imageUrl + "\" alt= \"" + altTxt + "\"></img>" + "<h3 class=\"productName\">".concat(i.name, "</h3>\n              <p class=\"productDescription\">").concat(i.description, "</p>\n            </article>\n            </a>");
         total += titi;
@@ -52,10 +61,16 @@ var Myfetch = fetch(url).then(function (responsive) {
     return console.log("erreur: " + err);
   });
 });
-console.log("02: ");
-console.log(Momo); // vi- *************************************************************
+
+if (true) {
+  console.log("02: ");
+  var BOBO = localStorage.getItem("obj");
+  var BIBI = JSON.parse(BOBO);
+  console.log(BIBI);
+} // vi- *************************************************************
 // vi- *************************************************************
 // vi- *************************************************************
+
 
 if (false) {
   var _id = "107fb5b75607497b96722bda5b504926";
