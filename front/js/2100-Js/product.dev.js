@@ -47,7 +47,7 @@ var Myfetch = fetch(url).then(function (responsive) {
 
     for (i; i < data.colors.length; i++) {
       color = data.colors[i];
-      total += "<option value=\"" + color + "\">" + color + "</option>";
+      total += "<option value=\"" + color + "\">" + color + "</option>"; // total += `<option value="` + data.colors[i] + `">` + data.colors[i] + `</option>`;
     } // console.log(total);
 
 
