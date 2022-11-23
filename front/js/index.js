@@ -15,11 +15,7 @@ let Myfetch = fetch(url)
           let total = "";
           let titi = "";
 
-          // o-provisoire
-          let coco = 0;
-
           for (let i of data) {
-
 
             // j- pour voir , concerver
             // console.log(i._id + " " +
@@ -36,12 +32,11 @@ let Myfetch = fetch(url)
             <img src="` + i.imageUrl + `" alt= "` + altTxt + `"></img>`
               +
               `<h3 class="productName">${i.name}</h3>
-              <p class="productDescription">${coco} ${i.description}</p>
+              <p class="productDescription">${i.description}</p>
             </article>
             </a>`;
 
             total += titi;
-            coco++;
 
           };
 
