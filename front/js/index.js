@@ -17,12 +17,12 @@ let Myfetch = fetch(url)
           let objLinea = JSON.stringify(Momo);
           localStorage.setItem("obj", objLinea);
 
-          if (false) {
-            let BOBO = localStorage.getItem("obj");
-            let BIBI = JSON.parse(BOBO);
+          // if (false) {
+          //   let BOBO = localStorage.getItem("obj");
+          //   let BIBI = JSON.parse(BOBO);
 
-            console.log(BIBI);
-          }
+          //   console.log(BIBI);
+          // }
 
           // j- pour voir , concerver
           // console.log(data);
@@ -66,9 +66,10 @@ let Myfetch = fetch(url)
   );
 
 if (true) {
-  console.log("02: ");
   let BOBO = localStorage.getItem("obj");
   let BIBI = JSON.parse(BOBO);
+
+  console.log("02: ");
   console.log(BIBI);
 }
 

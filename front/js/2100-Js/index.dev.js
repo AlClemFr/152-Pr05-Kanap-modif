@@ -8,15 +8,13 @@ var Myfetch = fetch(url).then(function (responsive) {
     Momo = data;
     console.log("01: ");
     var objLinea = JSON.stringify(Momo);
-    localStorage.setItem("obj", objLinea);
-
-    if (false) {
-      var BOBO = localStorage.getItem("obj");
-      var BIBI = JSON.parse(BOBO);
-      console.log(BIBI);
-    } // j- pour voir , concerver
+    localStorage.setItem("obj", objLinea); // if (false) {
+    //   let BOBO = localStorage.getItem("obj");
+    //   let BIBI = JSON.parse(BOBO);
+    //   console.log(BIBI);
+    // }
+    // j- pour voir , concerver
     // console.log(data);
-
 
     var altTxt = "";
     var total = "";
@@ -63,9 +61,9 @@ var Myfetch = fetch(url).then(function (responsive) {
 });
 
 if (true) {
-  console.log("02: ");
   var BOBO = localStorage.getItem("obj");
   var BIBI = JSON.parse(BOBO);
+  console.log("02: ");
   console.log(BIBI);
 } // vi- *************************************************************
 // vi- *************************************************************
