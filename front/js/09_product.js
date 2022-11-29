@@ -1,8 +1,9 @@
 
-// 
+// v- Récupération lien courant.
 let urlCourant = window.location.href;
 console.log(urlCourant);
 
+// v- Récupération Id procduit dans le lien.
 let urlCourantBis = new URL(urlCourant);
 let id = urlCourantBis.searchParams.get("id");
 console.log(id);
@@ -11,6 +12,7 @@ console.log(id);
 // vi- ----------------------------------------------------
 // vi- ----------------------------------------------------
 
+// v- Récupération des datas associée à l'Id
 let url = "http://localhost:3000/api/products/" + id;
 console.log(url);
 
@@ -81,7 +83,26 @@ let Myfetch = fetch(url)
 const addToCard = document.getElementById('addToCart');
 // On récupère l'élément sur lequel on veut détecter le clic
 addToCard.addEventListener('click', function () {    // On écoute l'événement click
+
+  // saveBasket(basket)
+
+
+
   // addToCard.innerHTML = total + "C'est cliqué !";
-  addToCard.innerHTML = "C'est cliqué !"; 
+  addToCard.innerHTML = "C'est cliqué !";
+  // On change le contenu de notre élément pour afficher "C'est cliqué !"
+});
+
+
+// v- Evenement validation du champs quantitéclic sur le bouton addtoCard // Exemple OC ok
+const quantity = document.getElementById('quantity');
+quantity.addEventListener('click', function () {    // On écoute l'événement click
+
+  console.log();
+
+
+
+  // addToCard.innerHTML = total + "C'est cliqué !";
+  quantity.innerHTML = "C'est cliqué !";
   // On change le contenu de notre élément pour afficher "C'est cliqué !"
 });

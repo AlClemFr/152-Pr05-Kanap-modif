@@ -2,9 +2,9 @@
 <html lang="fr">
 
 <head>
-  <title>Confirmation</title>
+  <title>Kanap</title>
   <!-- j- Icone dans le titre de l'onglet -->
-  <link rel="shortcut icon" href="../images/logo.png">
+  <link rel="shortcut icon" href="./images/logo.png">
 
   <meta charset="utf-8">
   <meta name="description" content="Plateforme incroyable de e-commerce">
@@ -14,8 +14,8 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap"
     rel="stylesheet">
-  <link href="../css/10_style.css" rel="stylesheet" />
-  <link href="../css/08_confirmation.css" rel="stylesheet" />
+  <link href="./css/10_style.css" rel="stylesheet" />
+
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
@@ -25,11 +25,11 @@
     <div class="limitedWidthBlockContainer informations">
       <div class="limitedWidthBlock">
         <ul>
-          <li><img src="../images/icons/phone.svg" alt="logo de téléphone"
+          <li><img src="./images/icons/phone.svg" alt="logo de téléphone"
               class="informations__phone">01 23 45 67 89</li>
-          <li><img src="../images/icons/mail.svg" alt="logo d'une enveloppe"
+          <li><img src="./images/icons/mail.svg" alt="logo d'une enveloppe"
               class="informations__mail">support@name.com</li>
-          <li><img src="../images/icons/adress.svg"
+          <li><img src="./images/icons/adress.svg"
               alt="logo d'un point de géolocalisation"
               class="informations__address">01 23 45 67 89</li>
         </ul>
@@ -38,7 +38,7 @@
     <div class="limitedWidthBlockContainer menu">
       <div class="limitedWidthBlock">
         <a href="./10_index.html">
-          <img class="logo" src="../images/logo.png" alt="Logo de l'entreprise">
+          <img class="logo" src="./images/logo.png" alt="Logo de l'entreprise">
         </a>
         <nav>
           <ul>
@@ -52,21 +52,31 @@
         </nav>
       </div>
     </div>
-    <img class="banniere" src="../images/banniere.png" alt="Baniere">
+    <img class="banniere" src="./images/banniere.png" alt="Baniere">
   </header>
 
   <main class="limitedWidthBlockContainer">
-    <div class="limitedWidthBlock" id="limitedWidthBlock">
-
-      <div class="confirmation">
-        <p>Commande validée ! <br>Votre numéro de commande est :
-          <span id="orderId">
-            <!-- j- valider seulement pour voir le résultat final-->
-            <!-- 65431343444684674 -->
-          </span>
-        </p>
+    <div class="limitedWidthBlock">
+      <div class="titles">
+        <h1>Nos produits</h1>
+        <h2>Une gamme d'articles exclusifs</h2>
       </div>
+      <section class="items" id="items">
+        <!-- j- début valider seulement pour voir le résultat final-->
 
+        <!-- <a href="./product.html?id=42">
+          <article>
+            <img src=".../product01.jpg"
+              alt="Lorem ipsum dolor sit amet, Kanap name1">
+            <h3 class="productName">Kanap name1</h3>
+            <p class="productDescription">Dis enim malesuada risus sapien
+              gravida nulla nisl arcu. Dis enim malesuada risus sapien gravida
+              nulla nisl arcu.</p>
+          </article>
+        </a> -->
+
+        <!-- j- fin valider seulement pour voir le résultat final-->
+      </section>
     </div>
   </main>
 
@@ -74,7 +84,7 @@
     <div class="limitedWidthBlockContainer footerMain">
       <div class="limitedWidthBlock">
         <div>
-          <img class="logo" src="../images/logo.png" alt="Logo de l'entreprise">
+          <img class="logo" src="./images/logo.png" alt="Logo de l'entreprise">
         </div>
         <div>
           <p>10 quai de la charente <br>75019 Paris 19</p>
@@ -90,15 +100,16 @@
     <div class="limitedWidthBlockContainer footerSecondary">
       <div class="limitedWidthBlock">
         <p>© Copyright 2021 - 2042 | Openclassrooms by Openclassrooms | All
-          <!-- o- correction avant & apres -->
+          <!-- o- correction avant & après -->
           <!--  Rights Reserved | Powered by <3< /p> -->
           Rights Reserved | Powered by
         </p>
-
       </div>
     </div>
   </footer>
-  <script src="../js/08_confirmation.js"></script>
+  <!-- <script src="./js/basket.js"></script> -->
+  <script src="./js/00_fonction.js"></script>
+  <script src="./js/10_index.js"></script>
 </body>
 
 </html>
