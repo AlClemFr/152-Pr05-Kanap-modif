@@ -46,7 +46,7 @@ let Myfetch = fetch(url)
             altTxt = i.altTxt + ', ' + i.name;
 
             titi =
-              `<a href="./product.html?id=${i._id}">
+              `<a href="./09_product.html?id=${i._id}">
             <article>
             <img src="` + i.imageUrl + `" alt= "` + altTxt + `"></img>`
               +

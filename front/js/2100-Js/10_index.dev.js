@@ -35,7 +35,7 @@ var Myfetch = fetch(url).then(function (responsive) {
         //   i.description + " " +
         //   i.altTxt);
         altTxt = i.altTxt + ', ' + i.name;
-        titi = "<a href=\"./product.html?id=".concat(i._id, "\">\n            <article>\n            <img src=\"") + i.imageUrl + "\" alt= \"" + altTxt + "\"></img>" + "<h3 class=\"productName\">".concat(i.name, "</h3>\n              <p class=\"productDescription\">").concat(i.description, "</p>\n            </article>\n            </a>");
+        titi = "<a href=\"./09_product.html?id=".concat(i._id, "\">\n            <article>\n            <img src=\"") + i.imageUrl + "\" alt= \"" + altTxt + "\"></img>" + "<h3 class=\"productName\">".concat(i.name, "</h3>\n              <p class=\"productDescription\">").concat(i.description, "</p>\n            </article>\n            </a>");
         total += titi;
       }
     } catch (err) {

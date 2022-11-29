@@ -55,4 +55,12 @@ var Myfetch = fetch(url).then(function (responsive) {
   })["catch"](function (err) {
     return console.log("erreur: " + err);
   });
+}); // v- Evenement clic sur le bouton addtoCard // Exemple OC ok
+
+var addToCard = document.getElementById('addToCart'); // On récupère l'élément sur lequel on veut détecter le clic
+
+addToCard.addEventListener('click', function () {
+  // On écoute l'événement click
+  // addToCard.innerHTML = total + "C'est cliqué !";
+  addToCard.innerHTML = "C'est cliqué !"; // On change le contenu de notre élément pour afficher "C'est cliqué !"
 });
