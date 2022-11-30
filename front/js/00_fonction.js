@@ -17,6 +17,7 @@ function getPanier() {
   //  clée , valeur
   // get récupération
   let panier = localStorage.getItem("panier");
+  console.log(panier);
 
   //j- on teste si tableau basket existe
   if (panier == null) {

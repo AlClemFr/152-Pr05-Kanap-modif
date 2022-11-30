@@ -65,7 +65,7 @@ let Myfetch = fetch(url)
       .catch((err) => console.log(`erreur: ` + err))
   );
 
-if (true) {
+if (false) {
   let BOBO = localStorage.getItem("obj");
   let BIBI = JSON.parse(BOBO);
 
@@ -73,7 +73,8 @@ if (true) {
   console.log(BIBI);
 }
 
-
+console.log("coucou: ")
+getPanier();
 
 
 
