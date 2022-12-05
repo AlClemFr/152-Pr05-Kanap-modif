@@ -94,7 +94,7 @@ addToCard.addEventListener('click', function () {    // On écoute l'événement
 });
 
 
-// v- Evenement validation du champs quantitéclic sur le bouton addtoCard // Exemple OC ok
+// v- Evenement validation du champs quantité clic sur le bouton addtoCard // Exemple OC ok
 const quantity = document.getElementById('quantity');
 quantity.addEventListener('click', function () {    // On écoute l'événement click
 

@@ -66,7 +66,7 @@ addToCard.addEventListener('click', function () {
   // saveBasket(basket)
   // addToCard.innerHTML = total + "C'est cliqué !";
   addToCard.innerHTML = "C'est cliqué !"; // On change le contenu de notre élément pour afficher "C'est cliqué !"
-}); // v- Evenement validation du champs quantitéclic sur le bouton addtoCard // Exemple OC ok
+}); // v- Evenement validation du champs quantité clic sur le bouton addtoCard // Exemple OC ok
 
 var quantity = document.getElementById('quantity');
 quantity.addEventListener('click', function () {
