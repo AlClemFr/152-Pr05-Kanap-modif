@@ -33,7 +33,7 @@ var Myfetch = fetch(url).then(function (responsive) {
           balise_a.href = "./09_product.html?id=".concat(i._id); // vi- creaction balise article ------------------------------------------
 
           var balise_article = document.createElement("article");
-          balise_a.appendChild(balise_article);
+          balise_a.appendChild(balise_article); // j- le if permet de créer une indentation
 
           if (true) {
             // vi- creaction balise img ------------------------------------------

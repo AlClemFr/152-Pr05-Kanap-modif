@@ -28,6 +28,27 @@ function getPanier() {
   }
 }
 
+// o- original pas touche
+if (false) {
+  function addPanier(product) {
+    let panier = getPanier();
+    // console.log(panier);
+
+    //  j- recherche si product exist déjà dans tableau.
+    let foundProduct = panier.find(p => p.id == product.id);
+
+    if (foundProduct != undefined) {
+      foundProduct.quantity++;
+    }
+    else {
+      product.quantity = 1;
+      panier.push(product);
+    }
+    savePanier(panier);
+  }
+}
+
+// j- Teste 
 function addPanier(product) {
   let panier = getPanier();
   // console.log(panier);
@@ -36,10 +57,23 @@ function addPanier(product) {
   let foundProduct = panier.find(p => p.id == product.id);
 
   if (foundProduct != undefined) {
-    foundProduct.quantity++;
+    // foundProduct.quantity++;
+    console.log("01: "); console.log(foundProduct.quantity);
+    console.log("02: "); console.log(product.quantity);
+
+    // let poub00 = parseInt(foundProduct.quantity);
+    // let poub10 = parseInt(product.quantity);
+    // let poub30 = poub00 + poub10;
+
+    foundProduct.quantity = product.quantity + foundProduct.quantity;
+    // foundProduct.quantity = poub30.toString;
+    // foundProduct.quantity = poub30;
+
+
+    console.log("03: "); console.log(product.quantity);
   }
   else {
-    product.quantity = 1;
+    // product.quantity = 0;
     panier.push(product);
   }
   savePanier(panier);
@@ -51,6 +85,8 @@ function removeFromPanier(product) {
   panier = panier.filter(p => p.id != product.id);
   savePanier(panier);
 }
+
+
 
 function changeQuantityPanier(product, quantity) {
   let panier = getPanier();
@@ -96,4 +132,19 @@ function getTotalPrice() {
 function sayWelcom() {
   return "Welcom to WayToLearnX.com";
 }
+
+
+// v- Mes fonctions à moi
+function fctVisu(validation_affichage, numero, information_a_affichager) {
+  if (validation_affichage == true) {
+
+    console.log("0" + numero.toString() + ": ");
+    console.log(information_a_affichager)
+  }
+};
+
+
+
+// (val) => console.log(val);
+
 

@@ -1,12 +1,19 @@
 "use strict";
 
 // v- Récupération lien courant.
-var urlCourant = window.location.href;
-console.log(urlCourant); // v- Récupération Id procduit dans le lien.
+var urlCourant = window.location.href; // console.log(urlCourant);
+
+fctVisu(false, 2, urlCourant); // v- Récupération Id procduit dans le lien.
 
 var urlCourantBis = new URL(urlCourant);
 var id = urlCourantBis.searchParams.get("id");
-console.log(id); // vi- ----------------------------------------------------
+fctVisu(false, 3, id);
+
+if (false) {
+  console.log(id);
+}
+
+; // vi- ----------------------------------------------------
 // vi- ----------------------------------------------------
 // v- Récupération des datas associée à l'Id
 
@@ -22,56 +29,85 @@ var Myfetch = fetch(url).then(function (responsive) {
     //   i.imageUrl + " " +
     //   i.description + " " +
     //   i.altTxt);
-    var total = ""; //b---------
+    if (true) {
+      var total = ""; //b---------
 
-    document.querySelector('#title').innerHTML = data.name; //b---------
+      document.querySelector('#title').innerHTML = data.name; //b---------
 
-    var altTxt = data.altTxt + ', ' + data.name;
-    total = "\n          <img src=\"" + data.imageUrl + "\" alt= \"" + altTxt + "\"></img>";
-    document.querySelector('.item__img').innerHTML = total; //b---------      
+      var altTxt = data.altTxt + ', ' + data.name;
+      total = "\n            <img src=\"" + data.imageUrl + "\" alt= \"" + altTxt + "\"></img>";
+      document.querySelector('.item__img').innerHTML = total; //b---------      
 
-    document.querySelector('#title2').innerHTML = data.name; //b---------  
-    // v- mettre en place la vigule, Fait OK     
+      document.querySelector('#title2').innerHTML = data.name; //b---------  
+      // v- mettre en place la vigule, Fait OK     
 
-    var poub = parseFloat(data.price);
-    poub /= 10;
-    console.log(poub);
-    var price = poub.toString();
-    document.querySelector('#price').innerHTML = price; //b---------  
+      var poub = parseFloat(data.price);
+      poub /= 10;
+      console.log(poub);
+      var price = poub.toString();
+      document.querySelector('#price').innerHTML = price; //b---------  
 
-    document.querySelector('#description').innerHTML = data.description; //b---------  
-    // let i = data.colors.length;
-    // console.log(i);
+      document.querySelector('#description').innerHTML = data.description; //b---------  
+      // let i = data.colors.length;
+      // console.log(i);
 
-    var i = 0;
-    total = "";
-    color = "";
+      var i = 0;
+      total = "";
+      color = "";
 
-    for (i; i < data.colors.length; i++) {
-      color = data.colors[i];
-      total += "<option value=\"" + color + "\">" + color + "</option>"; // total += `<option value="` + data.colors[i] + `">` + data.colors[i] + `</option>`;
-    } // console.log(total);
+      for (i; i < data.colors.length; i++) {
+        color = data.colors[i];
+        total += "<option value=\"" + color + "\">" + color + "</option>"; // total += `<option value="` + data.colors[i] + `">` + data.colors[i] + `</option>`;
+      } // console.log(total);
 
 
-    document.querySelector('#colors').innerHTML = total;
+      document.querySelector('#colors').innerHTML = total;
+    }
   })["catch"](function (err) {
     return console.log("erreur: " + err);
   });
-}); // v- Evenement clic sur le bouton addtoCard // Exemple OC ok
-
-var addToCard = document.getElementById('addToCart'); // On récupère l'élément sur lequel on veut détecter le clic
-
-addToCard.addEventListener('click', function () {
-  // On écoute l'événement click
-  // saveBasket(basket)
-  // addToCard.innerHTML = total + "C'est cliqué !";
-  addToCard.innerHTML = "C'est cliqué !"; // On change le contenu de notre élément pour afficher "C'est cliqué !"
-}); // v- Evenement validation du champs quantité clic sur le bouton addtoCard // Exemple OC ok
-
-var quantity = document.getElementById('quantity');
-quantity.addEventListener('click', function () {
-  // On écoute l'événement click
-  console.log(); // addToCard.innerHTML = total + "C'est cliqué !";
-
-  quantity.innerHTML = "C'est cliqué !"; // On change le contenu de notre élément pour afficher "C'est cliqué !"
 });
+var colors = document.getElementById('colors');
+var quantity = document.getElementById('quantity');
+var addToCard = document.getElementById('addToCart'); // j- raff page on remet a zero la quantity
+
+quantity.value = 0;
+
+if (true) {
+  // j- teste récupération Quantité
+  // const quantity = document.getElementById('quantity');
+  // j- on écoute l'évenement hors champs
+  quantity.addEventListener('focusout', function () {
+    // On écoute l'événement click
+    // console.log(quantity);
+    // console.log(quantity.value);
+    if (quantity.value > 100 || quantity.value < 0 || quantity.value == "") {
+      quantity.value = 0;
+    }
+
+    if (true) {
+      // v- Evenement clic sur le bouton addtoCard // Exemple OC ok
+      // const addToCard = document.getElementById('addToCart');
+      // On récupère l'élément sur lequel on veut détecter le clic
+      addToCard.addEventListener('click', function () {
+        // On écoute l'événement click
+        if (quantity.value <= 100 & quantity.value > 0) {
+          // console.log(id);
+          // console.log(colors.value);
+          // console.log(quantity.value);
+          addPanier({
+            id: id,
+            "color": colors.value,
+            "quantity": parseInt(quantity.value)
+          });
+        } // addToCard.innerHTML = total + "C'est cliqué !";
+
+
+        addToCard.innerHTML = "C'est cliqué !"; // On change le contenu de notre élément pour afficher "C'est cliqué !"
+      });
+    } // addToCard.innerHTML = total + "C'est cliqué !";
+    // quantity.innerHTML = "C'est cliqué !";
+    // On change le contenu de notre élément pour afficher "C'est cliqué !"
+
+  });
+}

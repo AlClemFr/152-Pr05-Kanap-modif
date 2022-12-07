@@ -23,7 +23,29 @@ function getPanier() {
   } else {
     return JSON.parse(panier);
   }
-}
+} // o- original pas touche
+
+
+if (false) {
+  var _addPanier = function _addPanier(product) {
+    var panier = getPanier(); // console.log(panier);
+    //  j- recherche si product exist déjà dans tableau.
+
+    var foundProduct = panier.find(function (p) {
+      return p.id == product.id;
+    });
+
+    if (foundProduct != undefined) {
+      foundProduct.quantity++;
+    } else {
+      product.quantity = 1;
+      panier.push(product);
+    }
+
+    savePanier(panier);
+  };
+} // j- Teste 
+
 
 function addPanier(product) {
   var panier = getPanier(); // console.log(panier);
@@ -34,9 +56,21 @@ function addPanier(product) {
   });
 
   if (foundProduct != undefined) {
-    foundProduct.quantity++;
+    // foundProduct.quantity++;
+    console.log("01: ");
+    console.log(foundProduct.quantity);
+    console.log("02: ");
+    console.log(product.quantity); // let poub00 = parseInt(foundProduct.quantity);
+    // let poub10 = parseInt(product.quantity);
+    // let poub30 = poub00 + poub10;
+
+    foundProduct.quantity = product.quantity + foundProduct.quantity; // foundProduct.quantity = poub30.toString;
+    // foundProduct.quantity = poub30;
+
+    console.log("03: ");
+    console.log(product.quantity);
   } else {
-    product.quantity = 1;
+    // product.quantity = 0;
     panier.push(product);
   }
 
@@ -134,4 +168,14 @@ function getTotalPrice() {
 
 function sayWelcom() {
   return "Welcom to WayToLearnX.com";
+} // v- Mes fonctions à moi
+
+
+function fctVisu(validation_affichage, numero, information_a_affichager) {
+  if (validation_affichage == true) {
+    console.log("0" + numero.toString() + ": ");
+    console.log(information_a_affichager);
+  }
 }
+
+; // (val) => console.log(val);

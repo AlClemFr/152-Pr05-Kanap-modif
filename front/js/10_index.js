@@ -42,7 +42,9 @@ let Myfetch = fetch(url)
               const balise_article = document.createElement("article");
               balise_a.appendChild(balise_article);
 
+              // j- le if permet de créer une indentation
               if (true) {
+                
                 // vi- creaction balise img ------------------------------------------
                 // <img src="` + i.imageUrl + `" alt= "` + altTxt + `"></img>`
                 altTxt = i.altTxt + ', ' + i.name;
