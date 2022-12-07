@@ -56,21 +56,27 @@ function addPanier(product) {
   //  j- recherche si product exist déjà dans tableau.
   let foundProduct = panier.find(p => p.id == product.id);
 
+  // console.log(foundProduct.color);
+
   if (foundProduct != undefined) {
-    // foundProduct.quantity++;
-    console.log("01: "); console.log(foundProduct.quantity);
-    console.log("02: "); console.log(product.quantity);
 
-    // let poub00 = parseInt(foundProduct.quantity);
-    // let poub10 = parseInt(product.quantity);
-    // let poub30 = poub00 + poub10;
+    if (true) {
+      // foundProduct.quantity++;
+      console.log("01: "); console.log(foundProduct.quantity);
+      console.log("02: "); console.log(product.quantity);
 
-    foundProduct.quantity = product.quantity + foundProduct.quantity;
-    // foundProduct.quantity = poub30.toString;
-    // foundProduct.quantity = poub30;
+      // let poub00 = parseInt(foundProduct.quantity);
+      // let poub10 = parseInt(product.quantity);
+      // let poub30 = poub00 + poub10;
+
+      foundProduct.quantity = product.quantity + foundProduct.quantity;
+      // foundProduct.quantity = poub30.toString;
+      // foundProduct.quantity = poub30;
 
 
-    console.log("03: "); console.log(product.quantity);
+      console.log("03: "); console.log(product.quantity);
+    }
+
   }
   else {
     // product.quantity = 0;
@@ -79,6 +85,9 @@ function addPanier(product) {
   savePanier(panier);
 }
 
+
+
+// v- Suppresiion du produit du panier
 function removeFromPanier(product) {
   let panier = getPanier();
 
@@ -87,7 +96,7 @@ function removeFromPanier(product) {
 }
 
 
-
+// v- Changer la quantité du produit dans le panier
 function changeQuantityPanier(product, quantity) {
   let panier = getPanier();
 

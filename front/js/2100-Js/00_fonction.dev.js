@@ -53,29 +53,32 @@ function addPanier(product) {
 
   var foundProduct = panier.find(function (p) {
     return p.id == product.id;
-  });
+  }); // console.log(foundProduct.color);
 
   if (foundProduct != undefined) {
-    // foundProduct.quantity++;
-    console.log("01: ");
-    console.log(foundProduct.quantity);
-    console.log("02: ");
-    console.log(product.quantity); // let poub00 = parseInt(foundProduct.quantity);
-    // let poub10 = parseInt(product.quantity);
-    // let poub30 = poub00 + poub10;
+    if (true) {
+      // foundProduct.quantity++;
+      console.log("01: ");
+      console.log(foundProduct.quantity);
+      console.log("02: ");
+      console.log(product.quantity); // let poub00 = parseInt(foundProduct.quantity);
+      // let poub10 = parseInt(product.quantity);
+      // let poub30 = poub00 + poub10;
 
-    foundProduct.quantity = product.quantity + foundProduct.quantity; // foundProduct.quantity = poub30.toString;
-    // foundProduct.quantity = poub30;
+      foundProduct.quantity = product.quantity + foundProduct.quantity; // foundProduct.quantity = poub30.toString;
+      // foundProduct.quantity = poub30;
 
-    console.log("03: ");
-    console.log(product.quantity);
+      console.log("03: ");
+      console.log(product.quantity);
+    }
   } else {
     // product.quantity = 0;
     panier.push(product);
   }
 
   savePanier(panier);
-}
+} // v- Suppresiion du produit du panier
+
 
 function removeFromPanier(product) {
   var panier = getPanier();
@@ -83,7 +86,8 @@ function removeFromPanier(product) {
     return p.id != product.id;
   });
   savePanier(panier);
-}
+} // v- Changer la quantité du produit dans le panier
+
 
 function changeQuantityPanier(product, quantity) {
   var panier = getPanier(); //  j- recherche si product existr déjà dans tableau.

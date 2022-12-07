@@ -73,10 +73,10 @@ let Myfetch = fetch(url)
             // console.log(i);
             let i = 0;
             total = "";
-            color = "";
+            let color = "";
 
             for (i; i < data.colors.length; i++) {
-              color = data.colors[i];
+              let color = data.colors[i];
               total += `<option value="` + color + `">` + color + `</option>`;
               // total += `<option value="` + data.colors[i] + `">` + data.colors[i] + `</option>`;
             }
@@ -89,72 +89,69 @@ let Myfetch = fetch(url)
       .catch((err) => console.log(`erreur: ` + err))
   );
 
+
 const colors = document.getElementById('colors');
 const quantity = document.getElementById('quantity');
 const addToCard = document.getElementById('addToCart');
+
 
 // j- raff page on remet a zero la quantity
 quantity.value = 0;
 
 
-if (true) {
-  // j- teste récupération Quantité
-  // const quantity = document.getElementById('quantity');
+// j- teste récupération Quantité
+// const quantity = document.getElementById('quantity');
 
-  // j- on écoute l'évenement hors champs
-  quantity.addEventListener('focusout', function () {    // On écoute l'événement click
+// j- on écoute l'évenement hors champs
+quantity.addEventListener('focusout', function () {    // On écoute l'événement click
 
-    // console.log(quantity);
+  // console.log(quantity);
+  // console.log(quantity.value);
+
+  if (quantity.value > 100 ||
+    quantity.value < 0 ||
+    quantity.value == "") {
+
+    quantity.value = 0;
+  }
+}
+);
+
+
+// v- Evenement clic sur le bouton addtoCard // Exemple OC ok
+// const addToCard = document.getElementById('addToCart');
+// On récupère l'élément sur lequel on veut détecter le clic
+addToCard.addEventListener('click', function () {    // On écoute l'événement click
+
+  if (quantity.value <= 100 &
+    quantity.value > 0) {
+
+    // console.log(id);
+    // console.log(colors.value);
     // console.log(quantity.value);
 
-    if (quantity.value > 100 ||
-      quantity.value < 0 ||
-      quantity.value == "") {
 
-      quantity.value = 0;
-    }
+    let toto = id + "-" + colors.value;
+    console.log(toto);
 
+    // addPanier({ id: id, "color": colors.value, "quantity": parseInt(quantity.value) });
+    addPanier({ id: toto, "quantity": parseInt(quantity.value) });
 
-
-    if (true) {
-      // v- Evenement clic sur le bouton addtoCard // Exemple OC ok
-      // const addToCard = document.getElementById('addToCart');
-      // On récupère l'élément sur lequel on veut détecter le clic
-      addToCard.addEventListener('click', function () {    // On écoute l'événement click
-
-
-
-        if (quantity.value <= 100 &
-          quantity.value > 0) {
-
-          // console.log(id);
-          // console.log(colors.value);
-          // console.log(quantity.value);
-
-
-
-
-          addPanier({ id: id, "color": colors.value, "quantity": parseInt(quantity.value) });
-
-        }
-
-
-        // addToCard.innerHTML = total + "C'est cliqué !";
-        addToCard.innerHTML = "C'est cliqué !";
-        // On change le contenu de notre élément pour afficher "C'est cliqué !"
-      });
-    }
-
-
-
-
-    // addToCard.innerHTML = total + "C'est cliqué !";
-    // quantity.innerHTML = "C'est cliqué !";
-    // On change le contenu de notre élément pour afficher "C'est cliqué !"
   }
-  );
 
+
+  // addToCard.innerHTML = total + "C'est cliqué !";
+  addToCard.innerHTML = "C'est cliqué !";
+  // On change le contenu de notre élément pour afficher "C'est cliqué !"
 }
+);
+
+  // addToCard.innerHTML = total + "C'est cliqué !";
+  // quantity.innerHTML = "C'est cliqué !";
+  // On change le contenu de notre élément pour afficher "C'est cliqué !"
+
+
+
 
 
 
