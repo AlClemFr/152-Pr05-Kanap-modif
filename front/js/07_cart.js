@@ -1,14 +1,23 @@
+// v- ***************
+// v- Déclaration des fonctions
 
+// v- Fonction pour afficher le produit
+function visuProd(iid_ccolor, iid, ccolor, nname, iimage, aaltTxt, pprice, qqté) {
 
-function prod(iid, ccolor, nname, iimage, aaltTxt, pprice, qqté) {
-  console.log("coco :");
-  console.log(iid);
-  console.log(ccolor);
-  console.log(nname);
-  console.log(iimage);
-  console.log(aaltTxt);
-  console.log(pprice);
-  console.log(qqté);
+  // vi-repérage Id auquels on va rajouter les balises dans le DOM
+  const ba_cart__items = document.getElementById('cart__items');
+
+  if (false) {
+    console.log("coco :");
+    console.log(iid_ccolor);
+    console.log(iid);
+    console.log(ccolor);
+    console.log(nname);
+    console.log(iimage);
+    console.log(aaltTxt);
+    console.log(pprice);
+    console.log(qqté);
+  }
 
   if (true) {
 
@@ -126,38 +135,42 @@ function prod(iid, ccolor, nname, iimage, aaltTxt, pprice, qqté) {
           let ba_input = document.createElement("input");
           // vi- créaction class 
           ba_input.className = "itemQuantity";
-          // ba_input.Name = "itemQuantity";
+          ba_input.id = iid_ccolor; // v- ok ca marche créaction d'un ID
 
-          // ba_imput.inputMode = "number";
-          // ba_imput.ValueMin = "1";
-          // ba_imput.ValueMax = "100";
+          ba_input.name = "itemQuantity";
+          ba_input.type = "number";
+          ba_input.min = "1";
+          ba_input.max = "100";
+
+          ba_input.value = qqté;
 
 
-          // j- mettre en place l'id du localStore ************************
-          newAttr = document.createAttribute("name");
-          newAttr.nodeValue = "itemQuantity";
-          ba_input.setAttributeNode(newAttr);
+          // j- a supprimer , mais fonctionne aussi
+          if (false) {
+            newAttr = document.createAttribute("name");
+            newAttr.nodeValue = "itemQuantity";
+            ba_input.setAttributeNode(newAttr);
 
-          newAttr = document.createAttribute("type");
-          newAttr.nodeValue = "number";
-          ba_input.setAttributeNode(newAttr);
+            newAttr = document.createAttribute("type");
+            newAttr.nodeValue = "number";
+            ba_input.setAttributeNode(newAttr);
 
-          newAttr = document.createAttribute("min");
-          newAttr.nodeValue = "1";
-          ba_input.setAttributeNode(newAttr);
+            newAttr = document.createAttribute("min");
+            newAttr.nodeValue = "1";
+            ba_input.setAttributeNode(newAttr);
 
-          newAttr = document.createAttribute("max");
-          newAttr.nodeValue = "100";
-          ba_input.setAttributeNode(newAttr);
+            newAttr = document.createAttribute("max");
+            newAttr.nodeValue = "100";
+            ba_input.setAttributeNode(newAttr);
 
-          // j- mettre en place l'id du localStore ************************
-          newAttr = document.createAttribute("value");
-          newAttr.nodeValue = qqté; //"42"; // v- modif OK Quantitée
-          ba_input.setAttributeNode(newAttr);
 
+            newAttr = document.createAttribute("value");
+            newAttr.nodeValue = qqté; //"42"; // v- modif OK Quantitée
+            ba_input.setAttributeNode(newAttr);
+          }
 
           ba_div_cart__item__content__settings__quantity.appendChild(ba_input);
-          fctVisu(true, 2, ba_input);
+          // fctVisu(true, 2, ba_input);
           // v- fin creaction balise div --
         }
 
@@ -168,27 +181,91 @@ function prod(iid, ccolor, nname, iimage, aaltTxt, pprice, qqté) {
           ba_div_cart__item__content__settings__delete.className = "cart__item__content__settings__delete";
           // vi- accrochage a la balise div
           ba_div_cart__item__content__settings.appendChild(ba_div_cart__item__content__settings__delete);
+
+          let ba_p_delete = document.createElement("p");
+          // vi- créaction class 
+          ba_p_delete.className = "deleteItem";
+          ba_p_delete.id = iid_ccolor + "-" + "delete";
+          ba_p_delete.textContent = "Supprimer";
+          // vi- accrochage a la balise div
+          ba_div_cart__item__content__settings__delete.appendChild(ba_p_delete);
+
           // v- fin creaction balise div --
         }
       }
     }
   }
 
-  return
 };
 
+
+function itFocusOut(iid_ccolor) {
+
+  let itemQuantity = document.getElementById(iid_ccolor);
+  // console.log("itemQuantity prod01: ");
+  // console.log(itemQuantity);
+
+  // j- raff page on remet a zero la quantity
+  // quantity.value = 0;
+
+  // j- on écoute l'évenement hors champs // // On écoute l'événement focus OUT
+  itemQuantity.addEventListener(
+    'focusout', function () {
+
+      // console.log(quantity);
+      // console.log(itemQuantity.value);
+
+      if (itemQuantity.value > 100 ||
+        itemQuantity.value < 1 ||
+        itemQuantity.value == "") {
+
+        itemQuantity.value = 1;
+      }
+    }
+  );
+};
+
+
+function itDelete(iid_ccolor_ddelete) {
+  console.log(iid_ccolor_ddelete);
+  let ddelete = document.getElementById(iid_ccolor_ddelete);
+  console.log(" ddelete prod01: ");
+  console.log(ddelete);
+
+  // j- raff page on remet a zero la quantity
+  // quantity.value = 0;
+
+  // j- on écoute l'évenement hors champs // // On écoute l'événement clic
+  ddelete.addEventListener(
+    'click', function () {
+
+      // console.log(quantity);
+      console.log("Gros Naze : " + iid_ccolor_ddelete);
+
+    }
+  );
+};
+
+
+
+
+// v- ***************
+// v- Début Programme
 
 
 // o- créaction dans le DOM "direct live"
 
 // vi-repérage Id auquels on va rajouter les balises dans le DOM
-const ba_cart__items = document.getElementById('cart__items');
+// const ba_cart__items = document.getElementById('cart__items');
 
-fctVisu(true, 1, ba_cart__items);
+// fctVisu(true, 1, ba_cart__items);
 
 // j- mettre en place teste si panier vide ****************************
 total = 0.0;
 
+// id :"107fb5b75607497b96722bda5b504926-Blue"
+
+let iid_ccolor = "107fb5b75607497b96722bda5b504926-Blue";
 let iid = "107fb5b75607497b96722bda5b504926";
 let ccolor = "blue";
 let nname = "Kanap Sinopé";
@@ -197,50 +274,117 @@ let aaltTxt = "Photo d'un canapé bleu, deux places";
 let pprice = "184.90";
 let qqté = "10";
 
-prod(iid, ccolor, nname, iimage, aaltTxt, pprice, qqté);
+visuProd(iid_ccolor, iid, ccolor, nname, iimage, aaltTxt, pprice, qqté);
 
-iid = "415b7cacb65d43b2b5c1ff70f3393ad1";
-ccolor = "Black/Yellow";
-nname = "Kanap Cyllène";
-iimage = "http://localhost:3000/images/kanap02.jpeg";
-aaltTxt = "Photo d'un canapé d'angle, vert, trois places";
-pprice = "449.90";
-qqté = "20";
+if (true) {
+  // id :"107fb5b75607497b96722bda5b504926-White"
+  iid_ccolor = "107fb5b75607497b96722bda5b504926-White";
+  iid = "107fb5b75607497b96722bda5b504926";
+  ccolor = "white";
+  nname = "Kanap Cyllène";
+  iimage = "http://localhost:3000/images/kanap02.jpeg";
+  aaltTxt = "Photo d'un canapé d'angle, vert, trois places";
+  pprice = "449.90";
+  qqté = "20";
 
-prod(iid, ccolor, nname, iimage, aaltTxt, pprice, qqté);
-
-
-// prod();
-// prod();
-// prod();
-
-// vi--------------------------------------------------------------------------
-// vi--------------------------------------------------------------------------
-
-
-const colors = document.getElementById('colors');
-const quantity = document.getElementById('quantity');
-const addToCard = document.getElementById('addToCart');
-
-
-// j- raff page on remet a zero la quantity
-quantity.value = 0;
-
-
-// j- teste récupération Quantité
-// const quantity = document.getElementById('quantity');
-
-// j- on écoute l'évenement hors champs
-quantity.addEventListener('focusout', function () {    // On écoute l'événement click
-
-  // console.log(quantity);
-  // console.log(quantity.value);
-
-  if (quantity.value > 100 ||
-    quantity.value < 0 ||
-    quantity.value == "") {
-
-    quantity.value = 0;
-  }
+  visuProd(iid_ccolor, iid, ccolor, nname, iimage, aaltTxt, pprice, qqté);
 }
-);
+
+// prod();
+// prod();
+// prod();
+
+// vi--------------------------------------------------------------------------
+// vi--------------------------------------------------------------------------
+
+
+if (false) {
+  iid_ccolor = "107fb5b75607497b96722bda5b504926-Blue";
+
+  let itemQuantity = document.getElementById(iid_ccolor);
+  console.log("itemQuantity prod01: ");
+  console.log(itemQuantity);
+
+  // j- raff page on remet a zero la quantity
+  // quantity.value = 0;
+
+  // j- on écoute l'évenement hors champs // // On écoute l'événement focus OUT
+  itemQuantity.addEventListener(
+    'focusout', function () {
+
+      // console.log(quantity);
+      console.log(itemQuantity.value);
+
+      if (itemQuantity.value > 100 ||
+        itemQuantity.value < 1 ||
+        itemQuantity.value == "") {
+
+        itemQuantity.value = 1;
+      }
+    }
+  );
+
+
+  iid_ccolor = "107fb5b75607497b96722bda5b504926-White";
+
+  let itemQuantity_b = document.getElementById(iid_ccolor);
+  console.log("itemQuantity prod02: ");
+  console.log(itemQuantity_b);
+
+  // j- raff page on remet a zero la quantity
+  // quantity.value = 0;
+
+  // j- on écoute l'évenement hors champs // // On écoute l'événement focus OUT
+  itemQuantity_b.addEventListener(
+    'focusout', function () {
+
+      // console.log(quantity);
+      console.log(itemQuantity_b.value);
+
+      if (itemQuantity_b.value > 100 ||
+        itemQuantity_b.value < 1 ||
+        itemQuantity_b.value == "") {
+
+        itemQuantity_b.value = 1;
+      }
+    }
+  );
+};
+
+
+
+iid_ccolor = "107fb5b75607497b96722bda5b504926-Blue";
+itFocusOut(iid_ccolor);
+
+iid_ccolor = "107fb5b75607497b96722bda5b504926-White";
+itFocusOut(iid_ccolor);
+
+
+iid_ccolor_ddelete = "107fb5b75607497b96722bda5b504926-Blue" + "-delete";
+// console.log(iid_ccolor_ddelete);
+itDelete(iid_ccolor_ddelete);
+
+iid_ccolor_ddelete = "107fb5b75607497b96722bda5b504926-White" + "-delete";
+// console.log(iid_ccolor_ddelete);
+itDelete(iid_ccolor_ddelete);
+
+if (false) {
+  iid_ccolor_ddelete = "107fb5b75607497b96722bda5b504926-Blue" + "-delete";
+  console.log(iid_ccolor_ddelete);
+  let ddelete = document.getElementById(iid_ccolor_ddelete);
+  console.log(" ddelete prod01: ");
+  console.log(ddelete);
+
+  // j- raff page on remet a zero la quantity
+  // quantity.value = 0;
+
+  // j- on écoute l'évenement hors champs // // On écoute l'événement clic
+  ddelete.addEventListener(
+    'click', function () {
+
+      // console.log(quantity);
+      console.log("Gros Naze");
+
+    }
+  );
+}
