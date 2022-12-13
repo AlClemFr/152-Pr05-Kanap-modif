@@ -177,8 +177,13 @@ function sayWelcom() {
 
 function fctVisu(validation_affichage, numero, information_a_affichager) {
   if (validation_affichage == true) {
-    console.log("0" + numero.toString() + ": ");
-    console.log(information_a_affichager);
+    if (numero < 10) {
+      console.log("0" + numero.toString() + ": ");
+      console.log(information_a_affichager);
+    } else {
+      console.log(numero.toString() + ": ");
+      console.log(information_a_affichager);
+    }
   }
 }
 
