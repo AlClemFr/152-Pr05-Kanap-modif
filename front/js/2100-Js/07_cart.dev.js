@@ -3,9 +3,9 @@
 // v- ***************
 // v- Déclaration des fonctions
 // v- Fonction pour afficher le produit
-function visuProd(iid_ccolor, iid, ccolor, nname, iimage, aaltTxt, pprice, qqté) {
+function Fct_VisuProd(iid_ccolor, iid, ccolor, nname, iimage, aaltTxt, pprice, qqté) {
   // vi-repérage Id auquels on va rajouter les balises dans le DOM
-  var ba_cart__items = document.getElementById('cart__items');
+  var ba_cart__items = document.getElementById('cart__items'); // j- inhiber pour éviter trop d'info dans la console
 
   if (false) {
     console.log("coco :");
@@ -124,7 +124,7 @@ function visuProd(iid_ccolor, iid, ccolor, nname, iimage, aaltTxt, pprice, qqté
           ba_p_qte.textContent = "Qté : ";
           ba_div_cart__item__content__settings__quantity.appendChild(ba_p_qte); // vi- creaction Imput
 
-          var ba_input = document.createElement("input"); // vi- créaction class 
+          var ba_input = document.createElement("input"); // vi- mise en place info associée à l'input
 
           ba_input.className = "itemQuantity";
           ba_input.id = iid_ccolor; // v- ok ca marche créaction d'un ID
@@ -154,24 +154,27 @@ function visuProd(iid_ccolor, iid, ccolor, nname, iimage, aaltTxt, pprice, qqté
             ba_input.setAttributeNode(newAttr);
           }
 
-          ba_div_cart__item__content__settings__quantity.appendChild(ba_input); // fctVisu(true, 2, ba_input);
-          // v- fin creaction balise div --
+          ba_div_cart__item__content__settings__quantity.appendChild(ba_input); // v- fin creaction balise div --
+          // j- inhiber pour éviter trop d'info dans la console
+          // fctVisu(true, 2, ba_input); 
         }
 
         if (true) {
-          // v- début creaction balise div --
+          // v- Début creaction balise div --
           var ba_div_cart__item__content__settings__delete = document.createElement("div"); // vi- créaction class 
 
           ba_div_cart__item__content__settings__delete.className = "cart__item__content__settings__delete"; // vi- accrochage a la balise div
 
-          ba_div_cart__item__content__settings.appendChild(ba_div_cart__item__content__settings__delete);
-          var ba_p_delete = document.createElement("p"); // vi- créaction class 
+          ba_div_cart__item__content__settings.appendChild(ba_div_cart__item__content__settings__delete); // v- fin creaction balise div --
+          // v- Début creaction balise p --
+
+          var ba_p_delete = document.createElement("p"); // vi- créaction class, Id etc.. 
 
           ba_p_delete.className = "deleteItem";
           ba_p_delete.id = iid_ccolor + "-" + "delete";
           ba_p_delete.textContent = "Supprimer"; // vi- accrochage a la balise div
 
-          ba_div_cart__item__content__settings__delete.appendChild(ba_p_delete); // v- fin creaction balise div --
+          ba_div_cart__item__content__settings__delete.appendChild(ba_p_delete); // v- Fin creaction balise p --          
         }
       }
     }
@@ -180,8 +183,9 @@ function visuProd(iid_ccolor, iid, ccolor, nname, iimage, aaltTxt, pprice, qqté
 
 ;
 
-function itFocusOut(iid_ccolor) {
-  var itemQuantity = document.getElementById(iid_ccolor); // console.log("itemQuantity prod01: ");
+function Fct_ItFocusOut(iid_ccolor) {
+  var itemQuantity = document.getElementById(iid_ccolor); // j- inhiber pour éviter trop d'info dans la console
+  // console.log("itemQuantity prod01: ");
   // console.log(itemQuantity);
   // j- raff page on remet a zero la quantity
   // quantity.value = 0;
@@ -198,114 +202,130 @@ function itFocusOut(iid_ccolor) {
 
 ;
 
-function itDelete(iid_ccolor_ddelete) {
+function Fct_ItDelete(iid_ccolor_ddelete) {
   console.log(iid_ccolor_ddelete);
-  var ddelete = document.getElementById(iid_ccolor_ddelete);
-  console.log(" ddelete prod01: ");
-  console.log(ddelete); // j- raff page on remet a zero la quantity
-  // quantity.value = 0;
+  var ddelete = document.getElementById(iid_ccolor_ddelete); // console.log(" ddelete prod01: ");
+  // console.log(ddelete);
   // j- on écoute l'évenement hors champs // // On écoute l'événement clic
 
-  ddelete.addEventListener('click', function () {
-    // console.log(quantity);
-    console.log("Gros Naze : " + iid_ccolor_ddelete);
+  ddelete.addEventListener('click', function () {// console.log(quantity);
+    // console.log("Gros Naze : " + iid_ccolor_ddelete);
   });
 }
 
 ; // v- ***************
 // v- Début Programme
-// o- créaction dans le DOM "direct live"
-// vi-repérage Id auquels on va rajouter les balises dans le DOM
-// const ba_cart__items = document.getElementById('cart__items');
-// fctVisu(true, 1, ba_cart__items);
-// j- mettre en place teste si panier vide ****************************
+// v- Créaction dans le DOM "direct live"
 
-total = 0.0; // id :"107fb5b75607497b96722bda5b504926-Blue"
+var panier = getPanier();
+var iid_ccolor = "";
+var iid = "";
+var ccolor = "";
+var nname = "";
+var iimage = "";
+var aaltTxt = "";
+var pprice = "";
+var qqté = "";
+var i = 0; // o- teste si panier vide
 
-var iid_ccolor = "107fb5b75607497b96722bda5b504926-Blue";
-var iid = "107fb5b75607497b96722bda5b504926";
-var ccolor = "blue";
-var nname = "Kanap Sinopé";
-var iimage = "http://localhost:3000/images/kanap01.jpeg";
-var aaltTxt = "Photo d'un canapé bleu, deux places";
-var pprice = "184.90";
-var qqté = "10";
-visuProd(iid_ccolor, iid, ccolor, nname, iimage, aaltTxt, pprice, qqté);
+if (panier.length > 0) {
+  // if (true) {
+  for (i; i < panier.length; i++) {
+    // vi- Récupération info dans le panier
+    // console.log("panier: ", panier, " | longeur: ", panier.length);
+    // console.log("id&color:", panier[i].id);
+    var poub_id_color = panier[i].id; // console.log(poub_id_color);
 
-if (true) {
-  // id :"107fb5b75607497b96722bda5b504926-White"
-  iid_ccolor = "107fb5b75607497b96722bda5b504926-White";
-  iid = "107fb5b75607497b96722bda5b504926";
-  ccolor = "white";
-  nname = "Kanap Cyllène";
-  iimage = "http://localhost:3000/images/kanap02.jpeg";
-  aaltTxt = "Photo d'un canapé d'angle, vert, trois places";
-  pprice = "449.90";
-  qqté = "20";
-  visuProd(iid_ccolor, iid, ccolor, nname, iimage, aaltTxt, pprice, qqté);
-} // prod();
-// prod();
-// prod();
-// vi--------------------------------------------------------------------------
-// vi--------------------------------------------------------------------------
+    var poub_id = poub_id_color.substr(0, 32); // console.log(poub_id);
 
+    var poub_color = poub_id_color.substr(33, poub_id_color.length); // console.log(poub_color);
 
-if (false) {
-  iid_ccolor = "107fb5b75607497b96722bda5b504926-Blue";
-  var itemQuantity = document.getElementById(iid_ccolor);
-  console.log("itemQuantity prod01: ");
-  console.log(itemQuantity); // j- raff page on remet a zero la quantity
-  // quantity.value = 0;
-  // j- on écoute l'évenement hors champs // // On écoute l'événement focus OUT
+    var poub_qte = panier[i].quantity; // console.log(poub_qte);
+    // vi- Récupération info Id du serveur
 
-  itemQuantity.addEventListener('focusout', function () {
-    // console.log(quantity);
-    console.log(itemQuantity.value);
+    var poub_url = "http://localhost:3000/api/products/" + poub_id;
+    var you = 0;
+    console.log(poub_url);
+    var Myfetch = fetch(poub_url).then(function (responsive) {
+      return responsive.json().then(function (data) {
+        // j- pour voir , concerver
+        console.log(" on name : ", data.name, " | price: ", data.price); // nname = data.name;
+        // pprice = data.price;
+        // console.log("data: ", data);
 
-    if (itemQuantity.value > 100 || itemQuantity.value < 1 || itemQuantity.value == "") {
-      itemQuantity.value = 1;
-    }
-  });
-  iid_ccolor = "107fb5b75607497b96722bda5b504926-White";
-  var itemQuantity_b = document.getElementById(iid_ccolor);
-  console.log("itemQuantity prod02: ");
-  console.log(itemQuantity_b); // j- raff page on remet a zero la quantity
-  // quantity.value = 0;
-  // j- on écoute l'évenement hors champs // // On écoute l'événement focus OUT
+        localStorage.name = data.name;
+        localStorage.price = data.price;
+        localStorage.imageUrl = data.imageUrl;
+        localStorage.altTxt = data.altTxt;
+        you = 10;
+      })["catch"](function (err) {
+        return console.log("erreur: " + err);
+      });
+    });
+    console.log("Myfetch: ", Myfetch); // j- pour voir , concerver
 
-  itemQuantity_b.addEventListener('focusout', function () {
-    // console.log(quantity);
-    console.log(itemQuantity_b.value);
+    nname = localStorage.name;
+    pprice = localStorage.price;
+    iimage = localStorage.imageUrl;
+    aaltTxt = localStorage.altTxt;
+    console.log("off name: ", nname);
+    console.log("off price: ", pprice);
+    console.log("off imageUrl: ", iimage);
+    console.log("off aaltTxt: ", aaltTxt);
+    iid_ccolor = poub_id_color;
+    iid = poub_id;
+    ccolor = poub_color; // nname = "Kanap Sinopé";
+    // iimage = "http://localhost:3000/images/kanap01.jpeg";
+    // aaltTxt = "Photo d'un canapé bleu, deux places";
+    // pprice = "184.90";
 
-    if (itemQuantity_b.value > 100 || itemQuantity_b.value < 1 || itemQuantity_b.value == "") {
-      itemQuantity_b.value = 1;
-    }
-  });
+    qqté = poub_qte;
+    Fct_VisuProd(iid_ccolor, iid, ccolor, nname, iimage, aaltTxt, pprice, qqté);
+  }
+} else {
+  // j- l'afficher dans la page 
+  console.log("panier: vide");
 }
 
-;
-iid_ccolor = "107fb5b75607497b96722bda5b504926-Blue";
-itFocusOut(iid_ccolor);
-iid_ccolor = "107fb5b75607497b96722bda5b504926-White";
-itFocusOut(iid_ccolor);
-iid_ccolor_ddelete = "107fb5b75607497b96722bda5b504926-Blue" + "-delete"; // console.log(iid_ccolor_ddelete);
-
-itDelete(iid_ccolor_ddelete);
-iid_ccolor_ddelete = "107fb5b75607497b96722bda5b504926-White" + "-delete"; // console.log(iid_ccolor_ddelete);
-
-itDelete(iid_ccolor_ddelete);
-
 if (false) {
-  iid_ccolor_ddelete = "107fb5b75607497b96722bda5b504926-Blue" + "-delete";
-  console.log(iid_ccolor_ddelete);
-  var ddelete = document.getElementById(iid_ccolor_ddelete);
-  console.log(" ddelete prod01: ");
-  console.log(ddelete); // j- raff page on remet a zero la quantity
-  // quantity.value = 0;
-  // j- on écoute l'évenement hors champs // // On écoute l'événement clic
+  var _iid_ccolor = "107fb5b75607497b96722bda5b504926-Blue";
+  var _iid = "107fb5b75607497b96722bda5b504926";
+  var _ccolor = "blue";
+  var _nname = "Kanap Sinopé";
+  var _iimage = "http://localhost:3000/images/kanap01.jpeg";
+  var _aaltTxt = "Photo d'un canapé bleu, deux places";
+  var _pprice = "184.90";
+  var _qqt = "10";
+  Fct_VisuProd(_iid_ccolor, _iid, _ccolor, _nname, _iimage, _aaltTxt, _pprice, _qqt);
 
-  ddelete.addEventListener('click', function () {
-    // console.log(quantity);
-    console.log("Gros Naze");
-  });
+  if (true) {
+    // id :"107fb5b75607497b96722bda5b504926-White"
+    _iid_ccolor = "107fb5b75607497b96722bda5b504926-White";
+    _iid = "107fb5b75607497b96722bda5b504926";
+    _ccolor = "white";
+    _nname = "Kanap Cyllène";
+    _iimage = "http://localhost:3000/images/kanap02.jpeg";
+    _aaltTxt = "Photo d'un canapé d'angle, vert, trois places";
+    _pprice = "449.90";
+    _qqt = "20";
+    Fct_VisuProd(_iid_ccolor, _iid, _ccolor, _nname, _iimage, _aaltTxt, _pprice, _qqt);
+  } // prod();
+  // prod();
+  // prod();
+  // v- ***************
+  // v- Gestion Evenement
+  // vi- It surveillance Focus Out champs Quantité
+
+
+  _iid_ccolor = "107fb5b75607497b96722bda5b504926-Blue";
+  Fct_ItFocusOut(_iid_ccolor);
+  _iid_ccolor = "107fb5b75607497b96722bda5b504926-White";
+  Fct_ItFocusOut(_iid_ccolor); // vi- It surveillance clic sur texte suppression
+
+  iid_ccolor_ddelete = "107fb5b75607497b96722bda5b504926-Blue" + "-delete"; // console.log(iid_ccolor_ddelete);
+
+  Fct_ItDelete(iid_ccolor_ddelete);
+  iid_ccolor_ddelete = "107fb5b75607497b96722bda5b504926-White" + "-delete"; // console.log(iid_ccolor_ddelete);
+
+  Fct_ItDelete(iid_ccolor_ddelete);
 }
