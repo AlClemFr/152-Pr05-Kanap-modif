@@ -1,6 +1,6 @@
 "use strict";
 
-// v- ***************
+// v- *************************
 // v- Déclaration des fonctions
 // v- Fonction pour afficher le produit
 function Fct_VisuProd(iid_ccolor, iid, ccolor, nname, iimage, aaltTxt, pprice, qqté) {
@@ -181,7 +181,7 @@ function Fct_VisuProd(iid_ccolor, iid, ccolor, nname, iimage, aaltTxt, pprice, q
   }
 }
 
-;
+; // vi- IT Focus Out
 
 function Fct_ItFocusOut(iid_ccolor) {
   var itemQuantity = document.getElementById(iid_ccolor); // j- inhiber pour éviter trop d'info dans la console
@@ -203,13 +203,14 @@ function Fct_ItFocusOut(iid_ccolor) {
 ;
 
 function Fct_ItDelete(iid_ccolor_ddelete) {
-  console.log(iid_ccolor_ddelete);
+  // console.log(iid_ccolor_ddelete);
   var ddelete = document.getElementById(iid_ccolor_ddelete); // console.log(" ddelete prod01: ");
   // console.log(ddelete);
   // j- on écoute l'évenement hors champs // // On écoute l'événement clic
 
-  ddelete.addEventListener('click', function () {// console.log(quantity);
-    // console.log("Gros Naze : " + iid_ccolor_ddelete);
+  ddelete.addEventListener('click', function () {
+    // console.log(quantity);
+    console.log("Gros Naze : " + iid_ccolor_ddelete);
   });
 }
 
@@ -224,13 +225,12 @@ var ccolor = "";
 var nname = "";
 var iimage = "";
 var aaltTxt = "";
-var pprice = "";
+var pprice = 0.0;
 var qqté = "";
 var i = 0; // o- teste si panier vide
 
 if (panier.length > 0) {
-  // if (true) {
-  for (i; i < panier.length; i++) {
+  var _loop = function _loop() {
     // vi- Récupération info dans le panier
     // console.log("panier: ", panier, " | longeur: ", panier.length);
     // console.log("id&color:", panier[i].id);
@@ -243,89 +243,49 @@ if (panier.length > 0) {
     var poub_qte = panier[i].quantity; // console.log(poub_qte);
     // vi- Récupération info Id du serveur
 
-    var poub_url = "http://localhost:3000/api/products/" + poub_id;
-    var you = 0;
-    console.log(poub_url);
-    var Myfetch = fetch(poub_url).then(function (responsive) {
-      return responsive.json().then(function (data) {
-        // j- pour voir , concerver
-        console.log(" on name : ", data.name, " | price: ", data.price); // nname = data.name;
-        // pprice = data.price;
-        // console.log("data: ", data);
+    var poub_url = "http://localhost:3000/api/products/" + poub_id; // let you = [panier.length, poub_id_color, poub_id, poub_color, poub_qte];
+    // let para = "coco"
+    // console.log(poub_url);
 
-        localStorage.name = data.name;
-        localStorage.price = data.price;
-        localStorage.imageUrl = data.imageUrl;
-        localStorage.altTxt = data.altTxt;
-        you = 10;
-      })["catch"](function (err) {
-        return console.log("erreur: " + err);
+    if (true) {
+      var Myfetch = fetch(poub_url).then(function (responsive) {
+        return responsive.json().then(function (data) {
+          iid_ccolor = poub_id_color;
+          iid = poub_id;
+          ccolor = poub_color;
+          nname = data.name; //"Kanap Sinopé";
+
+          iimage = data.imageUrl; //"http://localhost:3000/images/kanap01.jpeg";
+
+          aaltTxt = data.altTxt; //"Photo d'un canapé bleu, deux places";
+
+          pprice = parseInt(data.price) / 10; //"184.90";
+
+          qqté = poub_qte; // v- Creaction de la trame article
+
+          Fct_VisuProd(iid_ccolor, iid, ccolor, nname, iimage, aaltTxt, pprice, qqté); // v- It surveillance "Focus Out" champs Quantité
+          // iid_ccolor = "107fb5b75607497b96722bda5b504926-Blue";
+
+          Fct_ItFocusOut(iid_ccolor); // v- It surveillance "clic" sur texte suppression
+
+          iid_ccolor_ddelete = iid_ccolor + "-delete";
+          Fct_ItDelete(iid_ccolor_ddelete);
+        })["catch"](function (err) {
+          return console.log("erreur: " + err);
+        });
       });
-    });
-    console.log("Myfetch: ", Myfetch); // j- pour voir , concerver
+    }
+  };
 
-    nname = localStorage.name;
-    pprice = localStorage.price;
-    iimage = localStorage.imageUrl;
-    aaltTxt = localStorage.altTxt;
-    console.log("off name: ", nname);
-    console.log("off price: ", pprice);
-    console.log("off imageUrl: ", iimage);
-    console.log("off aaltTxt: ", aaltTxt);
-    iid_ccolor = poub_id_color;
-    iid = poub_id;
-    ccolor = poub_color; // nname = "Kanap Sinopé";
-    // iimage = "http://localhost:3000/images/kanap01.jpeg";
-    // aaltTxt = "Photo d'un canapé bleu, deux places";
-    // pprice = "184.90";
-
-    qqté = poub_qte;
-    Fct_VisuProd(iid_ccolor, iid, ccolor, nname, iimage, aaltTxt, pprice, qqté);
+  // if (true) {
+  for (i; i < panier.length; i++) {
+    _loop();
   }
+
+  ;
 } else {
   // j- l'afficher dans la page 
   console.log("panier: vide");
 }
 
-if (false) {
-  var _iid_ccolor = "107fb5b75607497b96722bda5b504926-Blue";
-  var _iid = "107fb5b75607497b96722bda5b504926";
-  var _ccolor = "blue";
-  var _nname = "Kanap Sinopé";
-  var _iimage = "http://localhost:3000/images/kanap01.jpeg";
-  var _aaltTxt = "Photo d'un canapé bleu, deux places";
-  var _pprice = "184.90";
-  var _qqt = "10";
-  Fct_VisuProd(_iid_ccolor, _iid, _ccolor, _nname, _iimage, _aaltTxt, _pprice, _qqt);
-
-  if (true) {
-    // id :"107fb5b75607497b96722bda5b504926-White"
-    _iid_ccolor = "107fb5b75607497b96722bda5b504926-White";
-    _iid = "107fb5b75607497b96722bda5b504926";
-    _ccolor = "white";
-    _nname = "Kanap Cyllène";
-    _iimage = "http://localhost:3000/images/kanap02.jpeg";
-    _aaltTxt = "Photo d'un canapé d'angle, vert, trois places";
-    _pprice = "449.90";
-    _qqt = "20";
-    Fct_VisuProd(_iid_ccolor, _iid, _ccolor, _nname, _iimage, _aaltTxt, _pprice, _qqt);
-  } // prod();
-  // prod();
-  // prod();
-  // v- ***************
-  // v- Gestion Evenement
-  // vi- It surveillance Focus Out champs Quantité
-
-
-  _iid_ccolor = "107fb5b75607497b96722bda5b504926-Blue";
-  Fct_ItFocusOut(_iid_ccolor);
-  _iid_ccolor = "107fb5b75607497b96722bda5b504926-White";
-  Fct_ItFocusOut(_iid_ccolor); // vi- It surveillance clic sur texte suppression
-
-  iid_ccolor_ddelete = "107fb5b75607497b96722bda5b504926-Blue" + "-delete"; // console.log(iid_ccolor_ddelete);
-
-  Fct_ItDelete(iid_ccolor_ddelete);
-  iid_ccolor_ddelete = "107fb5b75607497b96722bda5b504926-White" + "-delete"; // console.log(iid_ccolor_ddelete);
-
-  Fct_ItDelete(iid_ccolor_ddelete);
-}
+;

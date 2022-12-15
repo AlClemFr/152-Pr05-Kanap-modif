@@ -1,4 +1,4 @@
-// v- ***************
+// v- *************************
 // v- Déclaration des fonctions
 
 // v- Fonction pour afficher le produit
@@ -164,7 +164,6 @@ function Fct_VisuProd(iid_ccolor, iid, ccolor, nname, iimage, aaltTxt, pprice, q
             newAttr.nodeValue = "100";
             ba_input.setAttributeNode(newAttr);
 
-
             newAttr = document.createAttribute("value");
             newAttr.nodeValue = qqté; //"42"; // v- modif OK Quantitée
             ba_input.setAttributeNode(newAttr);
@@ -202,7 +201,7 @@ function Fct_VisuProd(iid_ccolor, iid, ccolor, nname, iimage, aaltTxt, pprice, q
   }
 };
 
-
+// vi- IT Focus Out
 function Fct_ItFocusOut(iid_ccolor) {
 
   let itemQuantity = document.getElementById(iid_ccolor);
@@ -232,7 +231,7 @@ function Fct_ItFocusOut(iid_ccolor) {
 
 
 function Fct_ItDelete(iid_ccolor_ddelete) {
-  console.log(iid_ccolor_ddelete);
+  // console.log(iid_ccolor_ddelete);
   let ddelete = document.getElementById(iid_ccolor_ddelete);
 
   // console.log(" ddelete prod01: ");
@@ -243,7 +242,7 @@ function Fct_ItDelete(iid_ccolor_ddelete) {
     'click', function () {
 
       // console.log(quantity);
-      // console.log("Gros Naze : " + iid_ccolor_ddelete);
+      console.log("Gros Naze : " + iid_ccolor_ddelete);
     }
   );
 };
@@ -262,7 +261,7 @@ let ccolor = "";
 let nname = "";
 let iimage = "";
 let aaltTxt = "";
-let pprice = "";
+let pprice = 0.0;
 let qqté = "";
 
 let i = 0;
@@ -294,119 +293,49 @@ if (panier.length > 0) {
     // vi- Récupération info Id du serveur
     let poub_url = "http://localhost:3000/api/products/" + poub_id;
 
-    var you = 0;
+    // let you = [panier.length, poub_id_color, poub_id, poub_color, poub_qte];
+    // let para = "coco"
+    // console.log(poub_url);
 
-    console.log(poub_url);
+    if (true) {
+      let Myfetch = fetch(poub_url)
+        .then(
+          (responsive) => responsive.json()
+            .then(
+              (data) => {
 
-    let Myfetch = fetch(poub_url)
-      .then(
-        (responsive) => responsive.json()
-          .then(
-            (data) => {
+                iid_ccolor = poub_id_color;
+                iid = poub_id;
+                ccolor = poub_color;
 
+                nname = data.name;                  //"Kanap Sinopé";
+                iimage = data.imageUrl;             //"http://localhost:3000/images/kanap01.jpeg";
+                aaltTxt = data.altTxt;              //"Photo d'un canapé bleu, deux places";
+                pprice = parseInt(data.price) / 10; //"184.90";
 
-              // j- pour voir , concerver
-              console.log(" on name : ", data.name, " | price: ", data.price);
-              // nname = data.name;
-              // pprice = data.price;
-              // console.log("data: ", data);
-              localStorage.name = data.name;
-              localStorage.price = data.price;
-              localStorage.imageUrl = data.imageUrl;
-              localStorage.altTxt = data.altTxt;
-              you = 10;
+                qqté = poub_qte;
 
-            }
-          )
-          .catch((err) => console.log(`erreur: ` + err))
-      );
+                // v- Creaction de la trame article
+                Fct_VisuProd(iid_ccolor, iid, ccolor, nname, iimage, aaltTxt, pprice, qqté);
 
-    console.log("Myfetch: ", Myfetch);
+                // v- It surveillance "Focus Out" champs Quantité
+                // iid_ccolor = "107fb5b75607497b96722bda5b504926-Blue";
+                Fct_ItFocusOut(iid_ccolor);
 
-    // j- pour voir , concerver
-    nname = localStorage.name;
-    pprice = localStorage.price;
-    iimage = localStorage.imageUrl;
-    aaltTxt = localStorage.altTxt;
-    console.log("off name: ", nname);
-    console.log("off price: ", pprice);
-    console.log("off imageUrl: ", iimage);
-    console.log("off aaltTxt: ", aaltTxt);
+                // v- It surveillance "clic" sur texte suppression
+                iid_ccolor_ddelete = iid_ccolor + "-delete";
+                Fct_ItDelete(iid_ccolor_ddelete);
+              }
+            )
+            .catch((err) => console.log(`erreur: ` + err))
+        );
+    }
 
-
-    iid_ccolor = poub_id_color;
-    iid = poub_id;
-    ccolor = poub_color;
-    // nname = "Kanap Sinopé";
-    // iimage = "http://localhost:3000/images/kanap01.jpeg";
-
-    // aaltTxt = "Photo d'un canapé bleu, deux places";
-    // pprice = "184.90";
-    qqté = poub_qte;
-
-    Fct_VisuProd(iid_ccolor, iid, ccolor, nname, iimage, aaltTxt, pprice, qqté);
-  }
+  };
 
 } else {
 
   // j- l'afficher dans la page 
   console.log("panier: vide");
+};
 
-
-}
-
-
-
-if (false) {
-
-  let iid_ccolor = "107fb5b75607497b96722bda5b504926-Blue";
-  let iid = "107fb5b75607497b96722bda5b504926";
-  let ccolor = "blue";
-  let nname = "Kanap Sinopé";
-  let iimage = "http://localhost:3000/images/kanap01.jpeg";
-  let aaltTxt = "Photo d'un canapé bleu, deux places";
-  let pprice = "184.90";
-  let qqté = "10";
-
-  Fct_VisuProd(iid_ccolor, iid, ccolor, nname, iimage, aaltTxt, pprice, qqté);
-
-  if (true) {
-    // id :"107fb5b75607497b96722bda5b504926-White"
-    iid_ccolor = "107fb5b75607497b96722bda5b504926-White";
-    iid = "107fb5b75607497b96722bda5b504926";
-    ccolor = "white";
-    nname = "Kanap Cyllène";
-    iimage = "http://localhost:3000/images/kanap02.jpeg";
-    aaltTxt = "Photo d'un canapé d'angle, vert, trois places";
-    pprice = "449.90";
-    qqté = "20";
-
-    Fct_VisuProd(iid_ccolor, iid, ccolor, nname, iimage, aaltTxt, pprice, qqté);
-  }
-
-  // prod();
-  // prod();
-  // prod();
-
-
-  // v- ***************
-  // v- Gestion Evenement
-
-  // vi- It surveillance Focus Out champs Quantité
-  iid_ccolor = "107fb5b75607497b96722bda5b504926-Blue";
-  Fct_ItFocusOut(iid_ccolor);
-
-  iid_ccolor = "107fb5b75607497b96722bda5b504926-White";
-  Fct_ItFocusOut(iid_ccolor);
-
-
-  // vi- It surveillance clic sur texte suppression
-  iid_ccolor_ddelete = "107fb5b75607497b96722bda5b504926-Blue" + "-delete";
-  // console.log(iid_ccolor_ddelete);
-  Fct_ItDelete(iid_ccolor_ddelete);
-
-  iid_ccolor_ddelete = "107fb5b75607497b96722bda5b504926-White" + "-delete";
-  // console.log(iid_ccolor_ddelete);
-  Fct_ItDelete(iid_ccolor_ddelete);
-
-}
