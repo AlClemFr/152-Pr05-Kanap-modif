@@ -17,7 +17,7 @@ function getPanier() {
   //  clée , valeur
   // get récupération
   let panier = localStorage.getItem("panier");
-  console.log(panier);
+  // console.log(panier);
 
   //j- on teste si tableau basket existe
   if (panier == null) {
@@ -62,8 +62,8 @@ function addPanier(product) {
 
     if (true) {
       // foundProduct.quantity++;
-      console.log("01: "); console.log(foundProduct.quantity);
-      console.log("02: "); console.log(product.quantity);
+      // console.log("01: "); console.log(foundProduct.quantity);
+      // console.log("02: "); console.log(product.quantity);
 
       // let poub00 = parseInt(foundProduct.quantity);
       // let poub10 = parseInt(product.quantity);
@@ -74,7 +74,7 @@ function addPanier(product) {
       // foundProduct.quantity = poub30;
 
 
-      console.log("03: "); console.log(product.quantity);
+      // console.log("03: "); console.log(product.quantity);
     }
 
   }
@@ -84,7 +84,6 @@ function addPanier(product) {
   }
   savePanier(panier);
 }
-
 
 
 // v- Suppresiion du produit du panier
@@ -98,6 +97,7 @@ function removeFromPanier(product) {
 
 // v- Changer la quantité du produit dans le panier
 function changeQuantityPanier(product, quantity) {
+  console.log("Product : ", product, " Quantity: ", quantity);
   let panier = getPanier();
 
   //  j- recherche si product existe déjà dans tableau.
@@ -105,7 +105,8 @@ function changeQuantityPanier(product, quantity) {
   // let founColor = panier.find(c => c.id == product.id);
 
   if (foundProduct != undefined) {
-    foundProduct.quantity += quantity;
+    // foundProduct.quantity += quantity;
+    foundProduct.quantity = quantity;
     console.log(foundProduct.quantity)
     if (foundProduct.quantity <= 0) {
       removeFromPanier(foundProduct);
@@ -115,6 +116,7 @@ function changeQuantityPanier(product, quantity) {
     }
   }
 }
+
 
 function getNumberProduct() {
   let panier = getPanier();
@@ -126,7 +128,7 @@ function getNumberProduct() {
   return number;
 }
 
-
+// j- pas utils dans ce projet
 function getTotalPrice() {
   let panier = getPanier();
   let total = 0;
@@ -137,13 +139,19 @@ function getTotalPrice() {
   return total;
 }
 
+
+
+
+// j- teste import/export
 // export niet 
 function sayWelcom() {
   return "Welcom to WayToLearnX.com";
 }
 
 
+// v- **************************************************************************
 // v- Mes fonctions à moi
+
 function fctVisu(validation_affichage, numero, information_a_affichager) {
 
   if (validation_affichage == true) {

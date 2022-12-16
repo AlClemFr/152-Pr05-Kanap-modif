@@ -196,11 +196,22 @@ function Fct_ItFocusOut(iid_ccolor) {
     // console.log(itemQuantity.value);
     if (itemQuantity.value > 100 || itemQuantity.value < 1 || itemQuantity.value == "") {
       itemQuantity.value = 1;
-    }
+    } // let toto = id + "-" + colors.value;
+    // console.log(toto);
+    // addPanier({ id: id, "color": colors.value, "quantity": parseInt(quantity.value) });
+    // console.log("iid_ccolor: ", iid_ccolor, " itemQuantity.value: ", parseInt(itemQuantity.value));
+    // addPanier({ id: iid_ccolor, "quantity": parseInt(itemQuantity.value) });
+
+
+    changeQuantityPanier({
+      id: iid_ccolor
+    }, parseInt(itemQuantity.value));
+    Fct_aff_nbreArticle_et_prixTotal();
+    window.location.reload(); // v- Lance le raff. de la page.
   });
 }
 
-;
+; // v- ca marche OK
 
 function Fct_ItDelete(iid_ccolor_ddelete) {
   var ddelete = document.getElementById(iid_ccolor_ddelete); // j- on écoute l'évenement hors champs // // On écoute l'événement clic
@@ -212,6 +223,27 @@ function Fct_ItDelete(iid_ccolor_ddelete) {
     });
     window.location.reload(); // v- Lance le raff. de la page.
   });
+}
+
+; // v- ca marche OK
+
+function Fct_aff_nbreArticle_et_prixTotal() {
+  var i = 0;
+  var Nbre_article = 0;
+  var Total_price = 0;
+
+  for (i; i < panier.length; i++) {
+    console.log(" Index: ", i, " Quantity : ", panier[i].quantity, " Prix: ", Ar_price[i]);
+    Nbre_article = Nbre_article + panier[i].quantity;
+    Total_price = Total_price + panier[i].quantity * Ar_price[i];
+  }
+
+  var ba_totalQuantity = document.getElementById('totalQuantity');
+  var ba_totalPrice = document.getElementById('totalPrice');
+  console.log(ba_totalQuantity.textContent, " ", ba_totalPrice.textContent);
+  console.log(" Nbre Article: ", Nbre_article, " Total_price : ", Total_price);
+  ba_totalQuantity.textContent = Nbre_article;
+  ba_totalPrice.textContent = Total_price;
 }
 
 ; // v- ***************
@@ -228,7 +260,7 @@ var aaltTxt = "";
 var pprice = 0.0;
 var qqté = "";
 var i = 0;
-var total = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]; // o- teste si panier vide
+var Ar_price = new Array(); // o- teste si panier vide
 
 if (panier.length > 0) {
   var _loop = function _loop() {
@@ -236,7 +268,8 @@ if (panier.length > 0) {
     var poub_id_color = panier[i].id;
     var poub_id = poub_id_color.substr(0, 32);
     var poub_color = poub_id_color.substr(33, poub_id_color.length);
-    var poub_qte = panier[i].quantity; // vi- Récupération info Id du serveur
+    var poub_qte = panier[i].quantity;
+    var ii = i; // vi- Récupération info Id du serveur
 
     var poub_url = "http://localhost:3000/api/products/" + poub_id;
 
@@ -256,21 +289,27 @@ if (panier.length > 0) {
 
           qqté = poub_qte; // j- teste
 
-          total[i] = total[i] + qqté * pprice;
-          console.log("in :", total[i]); // v- Creaction de la trame article
+          Ar_price[ii] = pprice; // console.log("in :", ii, total[ii]);
+          // v- Creaction de la trame article
 
           Fct_VisuProd(iid_ccolor, iid, ccolor, nname, iimage, aaltTxt, pprice, qqté); // v- It surveillance "Focus Out" champs Quantité
           // iid_ccolor = "107fb5b75607497b96722bda5b504926-Blue";
 
           Fct_ItFocusOut(iid_ccolor); // v- It surveillance "clic" sur texte suppression
+          // iid_ccolor_ddelete = "107fb5b75607497b96722bda5b504926-Blue-delete";
 
           iid_ccolor_ddelete = iid_ccolor + "-delete";
           Fct_ItDelete(iid_ccolor_ddelete);
+
+          if (ii = panier.length) {
+            Fct_aff_nbreArticle_et_prixTotal();
+          }
         })["catch"](function (err) {
           return console.log("erreur: " + err);
         });
       });
-    }
+    } // console.log("out :", total);
+
   };
 
   // if (true) {
@@ -282,6 +321,7 @@ if (panier.length > 0) {
 } else {
   // j- l'afficher dans la page 
   console.log("panier: vide");
+  Fct_aff_nbreArticle_et_prixTotal();
 }
 
 ;
