@@ -203,14 +203,14 @@ function Fct_ItFocusOut(iid_ccolor) {
 ;
 
 function Fct_ItDelete(iid_ccolor_ddelete) {
-  // console.log(iid_ccolor_ddelete);
-  var ddelete = document.getElementById(iid_ccolor_ddelete); // console.log(" ddelete prod01: ");
-  // console.log(ddelete);
-  // j- on écoute l'évenement hors champs // // On écoute l'événement clic
+  var ddelete = document.getElementById(iid_ccolor_ddelete); // j- on écoute l'évenement hors champs // // On écoute l'événement clic
 
   ddelete.addEventListener('click', function () {
-    // console.log(quantity);
-    console.log("Gros Naze : " + iid_ccolor_ddelete);
+    var poub_id_color = iid_ccolor_ddelete.substr(0, iid_ccolor_ddelete.length - 7);
+    removeFromPanier({
+      id: poub_id_color
+    });
+    window.location.reload(); // v- Lance le raff. de la page.
   });
 }
 
@@ -227,25 +227,18 @@ var iimage = "";
 var aaltTxt = "";
 var pprice = 0.0;
 var qqté = "";
-var i = 0; // o- teste si panier vide
+var i = 0;
+var total = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]; // o- teste si panier vide
 
 if (panier.length > 0) {
   var _loop = function _loop() {
     // vi- Récupération info dans le panier
-    // console.log("panier: ", panier, " | longeur: ", panier.length);
-    // console.log("id&color:", panier[i].id);
-    var poub_id_color = panier[i].id; // console.log(poub_id_color);
+    var poub_id_color = panier[i].id;
+    var poub_id = poub_id_color.substr(0, 32);
+    var poub_color = poub_id_color.substr(33, poub_id_color.length);
+    var poub_qte = panier[i].quantity; // vi- Récupération info Id du serveur
 
-    var poub_id = poub_id_color.substr(0, 32); // console.log(poub_id);
-
-    var poub_color = poub_id_color.substr(33, poub_id_color.length); // console.log(poub_color);
-
-    var poub_qte = panier[i].quantity; // console.log(poub_qte);
-    // vi- Récupération info Id du serveur
-
-    var poub_url = "http://localhost:3000/api/products/" + poub_id; // let you = [panier.length, poub_id_color, poub_id, poub_color, poub_qte];
-    // let para = "coco"
-    // console.log(poub_url);
+    var poub_url = "http://localhost:3000/api/products/" + poub_id;
 
     if (true) {
       var Myfetch = fetch(poub_url).then(function (responsive) {
@@ -261,7 +254,10 @@ if (panier.length > 0) {
 
           pprice = parseInt(data.price) / 10; //"184.90";
 
-          qqté = poub_qte; // v- Creaction de la trame article
+          qqté = poub_qte; // j- teste
+
+          total[i] = total[i] + qqté * pprice;
+          console.log("in :", total[i]); // v- Creaction de la trame article
 
           Fct_VisuProd(iid_ccolor, iid, ccolor, nname, iimage, aaltTxt, pprice, qqté); // v- It surveillance "Focus Out" champs Quantité
           // iid_ccolor = "107fb5b75607497b96722bda5b504926-Blue";

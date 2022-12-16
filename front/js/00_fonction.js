@@ -100,7 +100,7 @@ function removeFromPanier(product) {
 function changeQuantityPanier(product, quantity) {
   let panier = getPanier();
 
-  //  j- recherche si product existr déjà dans tableau.
+  //  j- recherche si product existe déjà dans tableau.
   let foundProduct = panier.find(p => p.id == product.id);
   // let founColor = panier.find(c => c.id == product.id);
 
