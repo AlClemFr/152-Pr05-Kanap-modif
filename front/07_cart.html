@@ -3,7 +3,7 @@
 
 <head>
   <title>Cart</title>
-  <!-- j- Icone dans le titre de l'onglet -->
+  <!--v- Rajout Icone dans le titre de l'onglet -->
   <link rel="shortcut icon" href="./images/logo.png">
 
   <meta charset="utf-8">
@@ -62,8 +62,8 @@
         <section class="cart">
           <section id="cart__items">
 
-            <!-- j- début - valider seulement pour voir le résultat final-->
-            <!-- j-1er article -->
+            <!--j- début - valider seulement pour voir le résultat final-->
+            <!--j-1er article -->
 
             <!-- <article class="cart__item" data-id="{product-ID}"
               data-color="{product-color}">
@@ -98,65 +98,72 @@
 
             </article> -->
 
-            <!-- j- fin - valider seulement pour voir le résultat final-->
+            <!--j- fin - valider seulement pour voir le résultat final-->
 
           </section>
 
           <div class="cart__price">
             <p>Total (<span id="totalQuantity">
-                <!-- j- valider seulement pour voir le résultat final-->
+                <!--j- valider seulement pour voir le résultat final-->
                 <!-- 2 -->
               </span> articles ) : <span id="totalPrice">
-                <!-- j- valider seulement pour voir le résultat final-->
+                <!--j- valider seulement pour voir le résultat final-->
                 <!-- 84,00 -->
               </span> €</p>
           </div>
-          <div class="cart__order">
-            <form method="get" class="cart__order__form">
 
+          <div class="cart__order">
+            <!--o- remplacement de la balise form par div pour pouvoir controler -->
+            <!--o- le contenue des champs avant de passer la cde -->
+            <!-- <form method="get" class="cart__order__form"> -->
+            <div class="cart__order__form">
               <div class="cart__order__form__question">
                 <label for="firstName">Prénom: </label>
-                <input type="text" name="firstName" id="firstName" required>
-                <p id="firstNameErrorMsg">
-                  <!-- j- valider seulement pour voir le résultat final-->
+                <input type="text" name="firstName" id="firstName" required
+                  placeholder="exemple: prénon">
+                <p id="firstNameErrorMsg" class="oorange">
+                  <!--j- valider seulement pour voir le résultat final-->
                   <!-- ci est un message d'erreur firstNameErrorMsg -->
                 </p>
               </div>
 
               <div class="cart__order__form__question">
                 <label for="lastName">Nom: </label>
-                <input type="text" name="lastName" id="lastName" required>
-                <p id="lastNameErrorMsg">
-                  <!-- j- valider seulement pour voir le résultat final-->
+                <input type="text" name="lastName" id="lastName" required
+                  placeholder="exemple: nom">
+                <p id="lastNameErrorMsg" class="oorange">
+                  <!--j- valider seulement pour voir le résultat final-->
                   <!-- ci est un message d'erreur lastNameErrorMsg -->
                 </p>
               </div>
 
               <div class="cart__order__form__question">
                 <label for="address">Adresse: </label>
-                <input type="text" name="address" id="address" required>
-                <p id="addressErrorMsg">
-                  <!-- j- valider seulement pour voir le résultat final-->
+                <input type="text" name="address" id="address" required
+                  placeholder="exemple: 11 rue du coral">
+                <p id="addressErrorMsg" class="oorange">
+                  <!--j- valider seulement pour voir le résultat final-->
                   <!-- ci est un message d'erreur addressErrorMsg -->
-
                 </p>
               </div>
 
               <div class="cart__order__form__question">
                 <label for="city">Ville: </label>
-                <input type="text" name="city" id="city" required>
-                <p id="cityErrorMsg">
-                  <!-- j- valider seulement pour voir le résultat final-->
+                <input type="text" name="city" id="city" required
+                  placeholder="exemple: 69820 Dardilly">
+                <p id="cityErrorMsg" class="oorange">
+                  <!--j- valider seulement pour voir le résultat final-->
                   <!-- ci est un message d'erreur cityErrorMsg -->
-
                 </p>
               </div>
 
               <div class="cart__order__form__question">
                 <label for="email">Email: </label>
-                <input type="email" name="email" id="email" required>
-                <p id="emailErrorMsg">
-                  <!-- j- valider seulement pour voir le résultat final-->
+                <input type="email" name="email" id="email" required
+                  placeholder="exemple: openclass@room.com">
+                <br>
+                <p id="emailErrorMsg" class="oorange">
+                  <!--j- valider seulement pour voir le résultat final-->
                   <!-- ci est un message d'erreur emailErrorMsg -->
                 </p>
               </div>
@@ -165,7 +172,15 @@
                 <input type="submit" value="Commander !" id="order">
               </div>
 
-            </form>
+              <div class="cart__order__form__submit">
+                <p id="orderErrorMsg" class="oorange">
+                  <!--j- valider seulement pour voir le résultat final-->
+                  <!-- ci est un message d'erreur orderErrorMsg -->
+                </p>
+              </div>
+
+              <!-- </form> -->
+            </div>
           </div>
         </section>
       </div>
@@ -192,13 +207,14 @@
     <div class="limitedWidthBlockContainer footerSecondary">
       <div class="limitedWidthBlock">
         <p>© Copyright 2021 - 2042 | Openclassrooms by Openclassrooms | All
-          <!-- o- correction avant & apres -->
+          <!--o- Correction avant & apres -->
           <!--  Rights Reserved | Powered by <3< /p> -->
           Rights Reserved | Powered by
         </p>
       </div>
     </div>
   </footer>
+  <!--v- appel des scripts-->
   <script src="./js/00_fonction.js"></script>
   <script src="./js/07_cart.js"></script>
 </body>

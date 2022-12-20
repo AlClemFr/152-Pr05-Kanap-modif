@@ -9,12 +9,6 @@ fctVisu(false, 2, urlCourant);
 // v- Récupération Id procduit dans le lien.
 let urlCourantBis = new URL(urlCourant);
 let id = urlCourantBis.searchParams.get("id");
-fctVisu(false, 3, id);
-
-
-
-if (false) { console.log(id) };
-
 
 // vi- ----------------------------------------------------
 // vi- ----------------------------------------------------
@@ -69,8 +63,7 @@ let Myfetch = fetch(url)
             document.querySelector('#description').innerHTML = data.description;
 
             //b---------  
-            // let i = data.colors.length;
-            // console.log(i);
+
             let i = 0;
             total = "";
             let color = "";
@@ -141,7 +134,9 @@ addToCard.addEventListener('click', function () {    // On écoute l'événement
 
 
   // addToCard.innerHTML = total + "C'est cliqué !";
-  addToCard.innerHTML = "C'est cliqué !";
+  if (false) {
+    addToCard.innerHTML = "C'est cliqué !";
+  }
   // On change le contenu de notre élément pour afficher "C'est cliqué !"
 }
 );

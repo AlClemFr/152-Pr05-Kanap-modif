@@ -10,19 +10,10 @@ let Myfetch = fetch(url)
       .then(
         (data) => {
 
-
           Momo = data;
-          // console.log("01: ");
 
           let objLinea = JSON.stringify(Momo);
           localStorage.setItem("obj", objLinea);
-
-          // if (false) {
-          //   let BOBO = localStorage.getItem("obj");
-          //   let BIBI = JSON.parse(BOBO);
-
-          //   console.log(BIBI);
-          // }
 
           // o- Remplacement innerHTML par créaction dans le DOM "direct live"
           if (true) {
@@ -37,14 +28,14 @@ let Myfetch = fetch(url)
               // j- inclure l'id dynamique
               // <a href="./09_product.html?id=${i._id}"></a>
               balise_a.href = `./09_product.html?id=${i._id}`;
-           
+
               // vi- creaction balise article ------------------------------------------
               const balise_article = document.createElement("article");
               balise_a.appendChild(balise_article);
 
               // j- le if permet de créer une indentation
               if (true) {
-                
+
                 // vi- creaction balise img ------------------------------------------
                 // <img src="` + i.imageUrl + `" alt= "` + altTxt + `"></img>`
                 altTxt = i.altTxt + ', ' + i.name;
