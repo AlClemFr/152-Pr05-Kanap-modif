@@ -367,8 +367,8 @@ function Attente_OrderId() {
   }).then(function (value) {
     console.log("04: ".concat(value.orderId));
     setTimeout(function () {
-      document.location.href = "./08_confirmation.html";
-    }, 5000); // location.href = `./confirmation.html?orderId=${value.orderId}`;
+      document.location.href = "./07_confirmation.html?orderId=".concat(value.orderId);
+    }, 5000);
   })["catch"](function (err) {
     console.log(err);
   }); // console.log(cccontact);

@@ -386,31 +386,74 @@ function Gestion_Formulaire_De_Contact() {
 
 
 //v- FONCTION ----------------------------------------
+//v- Gestion Attente orderId.
+//v-
+function Attente_OrderId() {
+  let cccontact = {
+    firstName: "Toto",
+    lastName: "Titi",
+    address: "10 rue du pont",
+    city: "lyon",
+    email: "toto@titi.com"
+  };
+
+  let productId = ["107fb5b75607497b96722bda5b504926",
+    "415b7cacb65d43b2b5c1ff70f3393ad1",
+    "055743915a544fde83cfdfc904935ee7"];
+
+  // console.log(cccontact);
+
+  let ContactProducts = {
+    contact: cccontact,
+    products: productId
+  };
+
+  // let toto = function send(e) {
+  //   e.preventDefault();
+  fetch("http://localhost:3000/api/products/order", {
+    method: "POST",
+    headers: {
+      // 'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    },
+    // body: JSON.stringify({ value: document.getElementById("value").value })
+    // body: JSON.stringify(contact_products)
+    body: JSON.stringify(ContactProducts)
+
+    // console.log("01: ");
+  })
+    .then(function (res) {
+      if (res.ok) {
+        console.log("02: ", res.ok);
+        // console.log("03: ", res.json());
+        // console.log("04: ", res.orderId);
+        return res.json();
+      }
+    })
+    .then(function (value) {
+      console.log(`04: ${value.orderId}`);
+      setTimeout(function () { document.location.href = `./07_confirmation.html?orderId=${value.orderId}`; }, 5000);
+    })
+    .catch(function (err) {
+      console.log(err);
+    });
+  // console.log(cccontact);
+
+};
+
+
+//v- FONCTION ----------------------------------------
 //v- Gestion Bouton de commande.
 //v- Contrôle que le panier n'est pas vide.
 //v- Contrôle que les différents champs de saisie sont valide.
-// v-
+//v-
 function Gestion_Bouton_Commande() {
 
   const oorder = document.getElementById('order');
   const oorderErrorMsg = document.getElementById('orderErrorMsg');
 
   oorder.addEventListener('click',
-    function () {    // On écoute l'événement click
-
-      // console.log(" la commande est passé");
-
-
-      // addToCard.innerHTML = total + "C'est cliqué !";
-
-      if (false) {
-        oorder.value = "C'est cliqué !";
-      }
-
-      // On change le contenu de notre élément pour afficher "C'est cliqué !"
-
-      // console.log("qqté :", qqté);
-
+    function () {
 
       let ook = false;
       ook = ar_contact[5] & ar_contact[6] & ar_contact[7] & ar_contact[8] & ar_contact[9];
@@ -419,10 +462,26 @@ function Gestion_Bouton_Commande() {
 
       if (qqté != "") {
         if (ook == true) {
-          oorderErrorMsg.textContent = "C'est partie dans le tuyau !";
+
+          oorderErrorMsg.textContent = "Dans un instant, vous allez être redirigé sur la page de confirmation de votre commande";
+
+
+          Attente_OrderId();
           //j- mettre en place la créaction de l'objet
           //j- mettre en place l'envoie du post et aller sur la page de confirmation.
 
+          if (false) {
+            setTimeout(function () { document.location.href = "./08_confirmation.html"; }, 5000);
+          };
+          if (false) {
+            //   setTimeout(function() {
+            //     console.log("I'm here!")
+            // }, 5000);
+            // setTimeout('RedirectionJavascript()', 20000);
+            // j- si numero de cde reçu alors aller a la page confirmation
+            document.location.href = "./08_confirmation.html"
+            // setTimeout(document.location.href = "./08_confirmation.html", 20000);
+          };
 
         } else {
           oorderErrorMsg.textContent = "Un ou plusieurs champs ne sont pas validé !";
@@ -433,6 +492,9 @@ function Gestion_Bouton_Commande() {
     }
   );
 }
+
+function page_confirmation() { document.location.href = "./08_confirmation.html"; };
+
 
 
 //v- *************************************************
@@ -469,5 +531,6 @@ let ar_contact = ["", "", "", "", "", false, false, false, false, false];
 Créaction_Articles_Dans_Dom();
 Gestion_Formulaire_De_Contact();
 Gestion_Bouton_Commande();
+
 
 
